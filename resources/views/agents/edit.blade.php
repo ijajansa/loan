@@ -20,7 +20,7 @@
                             <form method="POST" action="{{url('dsa/edit')}}/{{$data->id}}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row g-4">
-                                   <div class="col-lg-12">
+                                 <div class="col-lg-12">
                                     <h5 class="nk-block-title">Register DSA Form</h5>
                                     <hr>
                                 </div>
@@ -28,7 +28,8 @@
                                     <div class="form-group">
                                         <label class="form-label" for="full-name-1">First Name <span class="text-danger">*</span></label>
                                         <div class="form-control-wrap">
-                                            <input type="text" class="form-control @error('first_name') is-invalid @enderror" value="{{old('first_name',$data->first_name)}}" name="first_name" placeholder="Enter First Name" id="full-name-1">
+                                            <input type="text" class="form-control @error('first_name') is-invalid @enderror" value="{{old('first_name',$data->first_name)}}" name="first_name" placeholder="Enter First Name" id="full-name-1" onkeypress="return (event.charCode > 64 && 
+                                            event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)">
                                             @error('first_name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -41,7 +42,8 @@
                                     <div class="form-group">
                                         <label class="form-label" for="full-name-2">Middle Name</label>
                                         <div class="form-control-wrap">
-                                            <input type="text" class="form-control @error('middle_name') is-invalid @enderror" value="{{old('middle_name',$data->middle_name)}}" name="middle_name" placeholder="Enter Middle Name" id="full-name-2">
+                                            <input type="text" class="form-control @error('middle_name') is-invalid @enderror" value="{{old('middle_name',$data->middle_name)}}" name="middle_name" placeholder="Enter Middle Name" id="full-name-2" onkeypress="return (event.charCode > 64 && 
+                                            event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)">
                                             @error('middle_name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -54,7 +56,8 @@
                                     <div class="form-group">
                                         <label class="form-label" for="full-name-3">Last Name <span class="text-danger">*</span></label>
                                         <div class="form-control-wrap">
-                                            <input type="text" class="form-control @error('last_name') is-invalid @enderror" value="{{old('last_name',$data->last_name)}}" name="last_name" placeholder="Enter Last Name" id="full-name-3">
+                                            <input type="text" class="form-control @error('last_name') is-invalid @enderror" value="{{old('last_name',$data->last_name)}}" name="last_name" placeholder="Enter Last Name" id="full-name-3" onkeypress="return (event.charCode > 64 && 
+                                            event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)">
                                             @error('last_name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -82,7 +85,7 @@
                                     <div class="form-group">
                                         <label class="form-label" for="full-name-5">Mobile Number <span class="text-danger">*</span></label>
                                         <div class="form-control-wrap">
-                                            <input type="text" class="form-control @error('mobile_number') is-invalid @enderror" value="{{old('mobile_number',$data->mobile_number)}}" name="mobile_number" placeholder="Enter Mobile Number" id="full-name-5">
+                                            <input type="text" class="form-control @error('mobile_number') is-invalid @enderror" value="{{old('mobile_number',$data->mobile_number)}}" name="mobile_number" placeholder="Enter Mobile Number" id="full-name-5" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="10">
                                             @error('mobile_number')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -96,7 +99,7 @@
                                     <div class="form-group">
                                         <label class="form-label" for="full-name-6">Whatsapp Number <span class="text-danger">*</span></label>
                                         <div class="form-control-wrap">
-                                            <input type="text" class="form-control @error('whatsapp_number') is-invalid @enderror" value="{{old('whatsapp_number',$data->whatsapp_number)}}" name="whatsapp_number" placeholder="Enter Whatsapp Number" id="full-name-6">
+                                            <input type="text" class="form-control @error('whatsapp_number') is-invalid @enderror" value="{{old('whatsapp_number',$data->whatsapp_number)}}" name="whatsapp_number" placeholder="Enter Whatsapp Number" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="10" id="full-name-6">
                                             @error('whatsapp_number')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -111,7 +114,7 @@
                                     <div class="form-group">
                                         <label class="form-label" for="full-name-7">Permanent Account Number (PAN) <span class="text-danger">*</span></label>
                                         <div class="form-control-wrap">
-                                            <input type="text" class="form-control @error('pan_number') is-invalid @enderror" value="{{old('pan_number',$data->pan_number)}}" name="pan_number" placeholder="Enter PAN Number" id="full-name-7">
+                                            <input type="text" class="form-control @error('pan_number') is-invalid @enderror" value="{{old('pan_number',$data->pan_number)}}" name="pan_number" placeholder="Enter PAN Number" id="full-name-7" maxlength="10" onkeypress='return (event.charCode >= 48 && event.charCode <= 57) || (event.charCode > 64 && event.charCode < 91)' >
                                             @error('pan_number')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -125,7 +128,7 @@
                                     <div class="form-group">
                                         <label class="form-label" for="full-name-8">Aadhar Number <span class="text-danger">*</span></label>
                                         <div class="form-control-wrap">
-                                            <input type="text" class="form-control @error('aadhar_number') is-invalid @enderror" value="{{old('aadhar_number',$data->aadhar_number)}}" name="aadhar_number" placeholder="Enter Aadhar Number" id="full-name-8">
+                                            <input type="text" class="form-control @error('aadhar_number') is-invalid @enderror" value="{{old('aadhar_number',$data->aadhar_number)}}" name="aadhar_number" placeholder="Enter Aadhar Number" id="full-name-8" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12">
                                             @error('aadhar_number')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -191,7 +194,7 @@
                                     <div class="form-group">
                                         <label class="form-label" for="full-name-10">GST Number <span class="text-danger">*</span></label>
                                         <div class="form-control-wrap">
-                                            <input type="text" class="form-control @error('gst_number') is-invalid @enderror" value="{{old('gst_number',$data->gst_number)}}" name="gst_number" placeholder="Enter GST Number" id="full-name-10">
+                                            <input type="text" class="form-control @error('gst_number') is-invalid @enderror" value="{{old('gst_number',$data->gst_number)}}" name="gst_number" placeholder="Enter GST Number" id="full-name-10" maxlength="15" onkeypress='return (event.charCode >= 48 && event.charCode <= 57) || (event.charCode > 64 && event.charCode < 91)' >
                                             @error('gst_number')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -227,7 +230,7 @@
                                             <div class="form-group">
                                                 <label class="form-label" for="full-name-12">Pincode <span class="text-danger">*</span></label>
                                                 <div class="form-control-wrap">
-                                                    <input type="number" class="form-control @error('pincode') is-invalid @enderror" value="{{old('pincode',$data->pincode)}}" name="pincode" placeholder="Enter Pincode" id="full-name-12">
+                                                    <input type="number" class="form-control @error('pincode') is-invalid @enderror" value="{{old('pincode',$data->pincode)}}" name="pincode" placeholder="Enter Pincode" id="full-name-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="6">
                                                     @error('pincode')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -239,7 +242,8 @@
                                         <div class="col-lg-4 mt-3">
                                             <div class="form-group">
                                                 <div class="form-control-wrap">
-                                                    <input type="text" class="form-control @error('city') is-invalid @enderror" value="{{old('city',$data->city)}}" name="city" placeholder="City">
+                                                    <input type="text" class="form-control @error('city') is-invalid @enderror" value="{{old('city',$data->city)}}" name="city" placeholder="City" onkeypress="return (event.charCode > 64 && 
+                                                    event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)">
                                                     @error('city')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -251,7 +255,8 @@
                                         <div class="col-lg-4 mt-3">
                                             <div class="form-group">
                                                 <div class="form-control-wrap">
-                                                    <input type="text" class="form-control @error('state') is-invalid @enderror" value="{{old('state',$data->state)}}" name="state" placeholder="State">
+                                                    <input type="text" class="form-control @error('state') is-invalid @enderror" value="{{old('state',$data->state)}}" name="state" placeholder="State" onkeypress="return (event.charCode > 64 && 
+                                                    event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)">
                                                     @error('state')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -263,7 +268,8 @@
                                         <div class="col-lg-4 mt-3">
                                             <div class="form-group">
                                                 <div class="form-control-wrap">
-                                                    <input type="text" class="form-control @error('country') is-invalid @enderror" value="{{old('country',$data->country)}}" name="country" placeholder="Country">
+                                                    <input type="text" class="form-control @error('country') is-invalid @enderror" value="{{old('country',$data->country)}}" name="country" placeholder="Country" onkeypress="return (event.charCode > 64 && 
+                                                    event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)">
                                                     @error('country')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
