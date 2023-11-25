@@ -39,7 +39,8 @@
                                     <div class="form-group">
                                         <label class="form-label" for="full-name-1">Name <span class="text-danger">*</span></label>
                                         <div class="form-control-wrap">
-                                            <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{old('name',$data->name)}}" name="name" placeholder="eg. Personal Loan" id="full-name-1">
+                                            <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{old('name',$data->name)}}" name="name" placeholder="eg. Personal Loan" id="full-name-1" onkeypress="return (event.charCode > 64 && 
+                                            event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)">
                                             @error('name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
