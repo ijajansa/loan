@@ -1,0 +1,91 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use DataTables;
+use App\Models\User;
+use App\Models\CreditCard;
+use App\Models\LoanUserDocument;
+use App\Models\LoanMaster;
+
+class CardApplicationController extends Controller
+{
+    public function all(Request $request)
+    {
+    	if($request->ajax())
+    	{
+	    	$data = CreditCard::orderBy('credit_cards.id','DESC')->join('users','users.id','credit_cards.agent_id');
+            if($request->name!=null)
+            {
+                $data = $data->where(function($query) use ($request){
+                    $query->where('credit_cards.first_name','like','%'.$request->name.'%')->orWhere('credit_cards.last_name','like','%'.$request->name.'%')->orWhere('credit_cards.dob','like','%'.$request->name.'%')->orWhere('credit_cards.email','like','%'.$request->name.'%')->orWhere('credit_cards.mobile_number','like','%'.$request->name.'%')->orWhere('credit_cards.income_salary','like','%'.$request->name.'%');
+                });
+            }
+            
+            $data = $data->select('credit_cards.*','users.first_name as agent_first','users.last_name as agent_last');
+    		return DataTables::of($data)
+    		->addColumn('full_name',function($data){
+    			return $data->first_name." ".$data->last_name;
+    		})
+    		->addColumn('status',function($data){
+    			if($data->status =="Process")
+    			{
+    				return '<button class="btn btn-warning btn-sm">Processing</button>';
+    			}
+    			else if($data->status =="Login")
+    			{
+    				return '<button class="btn btn-primary btn-sm">Login</button>';
+    			}
+                else if($data->status =="Cancel")
+                {
+                    return '<button class="btn btn-danger btn-sm">Cancelled</button>';
+                }
+                else if($data->status =="PDC")
+                {
+                    return '<button class="btn btn-danger btn-sm">PDC</button>';
+                }
+                else
+                {
+                    return '<button class="btn btn-success btn-sm">Disburstment</button>';
+                }
+    		})
+    		->addColumn('action',function($data){
+    			return '<a href="'.url('credit-card-leads/edit').'/'.$data->id.'"><button class="btn btn-primary btn-sm"><i class="icon ni ni-edit"></i>&nbsp;View</button></a>';
+    		})
+    		->addColumn('agent_name',function($data){
+    			return $data->agent_first.' '.$data->agent_last;
+    		})
+            ->addColumn('created_at',function($data){
+                return $data->created_at->format('d-m-Y');
+            })
+    		->rawColumns(['full_name','agent_name','status','action','created_at'])->make(true);    		
+    	}
+
+    	return view('card-leads.all');
+
+    }
+
+    public function edit($id)
+    {
+        $data = CreditCard::where('credit_cards.id',$id)->with('agents')->select('credit_cards.*')
+        ->first();
+        $documents = [];
+        return view('card-leads.edit',compact('data','documents'));
+    }
+
+    public function status(Request $request)
+    {
+        $data = CreditCard::where('id',$request->id)->first();
+        if($data)
+        {
+            $data->status = $request->status;
+            $data->save();
+            return redirect()->back()->with('success','Application status updated successfully');
+
+        }
+        return redirect()->back()->with('error','Something went wrong');
+
+    }
+
+}

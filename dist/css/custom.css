@@ -1,0 +1,428 @@
+.w-content{
+	margin-left:16px;
+}
+.form-group.required .control-label:after {
+	content:"*";
+	color:red;
+}
+
+.form-field-error {
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+.custom-file img{
+    width:100%;
+    height: auto;
+}
+.custom-file p{
+    width:100%;
+    padding: 10px;
+    text-align: center;
+    font-weight: 700;
+
+}
+
+.file-input-container input {
+    padding: 10px;
+    margin:10px;
+    border:solid thin #E0E0E0;
+}
+
+.file-input-container span {
+    padding: 10px;
+    margin:10px;
+    color:#ff0000;
+}
+
+.doc-link {
+    border: solid thin #e0e0e0;
+    display: block;
+    margin: 0px 10px 10px 10px;
+    padding: 10px;
+}
+img.promo-image {
+    width: 100%;
+    margin: 0 auto;
+}
+
+img.promo-image-admin{
+    width: 100%;
+    margin: 0 auto;
+}
+
+.banner-user-name {
+    text-align: left;
+    font-size: 15px;
+    font-weight: 700;
+	margin-left: 10px;
+}
+
+.banner-box{
+    padding:0px;
+    border:solid thin #838383;
+    margin: 10px 0px 10px 35px;
+}
+.banner-img{
+    margin: 0 0 25px 0;
+}
+
+.banner-user-number {
+    text-align: left;
+    font-size: 15px;
+    margin-left: 10px;
+}
+
+.banner-user-email {
+    text-align: left;
+    font-size: 15px;
+    margin-left: 10px;
+}
+.banner-user-image-container {
+    text-align: right;
+    margin: 10px;
+}
+
+.banner-info{
+    text-align: center;
+    bottom: 0px;
+    position: absolute;
+    display: block;
+    width: 100%;
+}
+.timeline>div>.timeline-item>.timeline-header>a {
+    padding-right: 10px;
+}
+.btn-olive{
+    background-color: #3d9970;
+}
+.btn-indigo{
+    background-color: #6610f2;
+}
+.btn-orange{
+    background-color: #ff851b;
+}
+.btn-gray-dark{
+    background-color: #343a40;
+}
+.btn-navy{
+    background-color: #001f3f;
+}
+.file-with-password {
+    margin-top: 10px;
+    background-color: #897e00;
+}
+.banner-box-login{
+    background-color: #004aad;
+}
+
+.banner-box-login-yojana{
+    background-color: #ff9933;
+}
+.login-banner {
+    height: 100%;
+    margin: 0 auto;
+    display: block;
+}
+.login-box {
+    margin: 50px auto;
+}
+
+.main-docs div {
+    margin: 14px 0px;
+}
+
+.custom-file .edit-doc{
+    position: absolute;
+    top: 0px;
+    right:0px;
+    width:50px;
+    display: none;
+    background-color: rgba(0,0,0,0.8);
+    color: #ffffff;
+    padding: 12px;
+    text-align: center;
+}
+.custom-file:hover .edit-doc{
+    display: block;
+    cursor: pointer;
+}
+
+a.footer-list {
+    color: #ffffff;
+}
+a.footer-list:hover {
+    color: #007bff!important;
+}
+ul.footer-ul {
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+.tawk-footer .tawk-text-center {
+    display: none;
+}
+
+.dropdown-menu-right {
+    max-height: 350px;
+    width: 400px;
+    overflow: auto;
+    max-width: 360px;
+}
+
+.list-radio {
+    display: block;
+}
+
+
+
+.expand_button {
+    position: relative;
+    margin-left: 10px;
+    margin-right: 10px;
+    /* left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); */
+}
+
+.fncybutton {
+  width: 200px;
+  height: 80px;
+
+  cursor: pointer;
+}
+
+.line {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background-color: rgb(0, 52, 131);
+  transition: .5s;
+  opacity: 0.6;
+}
+
+.v1 {
+  left: 0;
+  top: 40px;
+  height: 70px;
+  margin: -35px 0;
+}
+.v2 {
+  left: 5px;
+  top: 40px;
+  height: 80px;
+  margin: -40px 0;
+}
+.v3 {
+  right: 5px;
+  top: 40px;
+  height: 80px;
+  margin: -40px 0;
+}
+.v4 {
+  right: 0;
+  top: 40px;
+  height: 70px;
+  margin: -35px 0;
+}
+
+.h1 {
+  left: 100px;
+  top: 0;
+  width: 190px;
+  margin: 0 -95px;
+}
+.h2 {
+  left: 100px;
+  top: 5px;
+  width: 200px;
+  margin: 0 -100px;
+}
+.h3 {
+  left: 100px;
+  bottom: 5px;
+  width: 200px;
+  margin: 0 -100px;
+}
+.h4 {
+  left: 100px;
+  bottom: 0;
+  width: 190px;
+  margin: 0 -95px;
+}
+
+
+.buttontext {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 10px;
+  bottom: 10px;
+  color: white;
+  line-height: 60px;
+  font-size: 13px;
+  font-family: Arial, sans-serif;
+  letter-spacing: 1.5px;
+  text-align: center;
+  transition: .5s;
+}
+
+.fncybutton:hover .buttontext {
+  background-color: rgb(0, 52, 131);
+  color: #ffffff;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+.fncybutton:hover .v1, .fncybutton:hover .v4 {
+  margin: 0;
+  height: 0;
+  opacity: 1;
+}
+
+.fncybutton:hover .v2, .fncybutton:hover .v3 {
+  height: 70px;
+  margin: -35px 0;
+  opacity: 1;
+}
+
+.fncybutton:hover .h1, .fncybutton:hover .h4 {
+  margin: 0;
+  width: 0;
+  opacity: 1;
+}
+
+.fncybutton:hover .h2, .fncybutton:hover .h3 {
+  width: 190px;
+  margin: 0 -95px;
+  opacity: 1;
+}
+
+.preloader{
+    background-color: #111111 !important;
+}
+
+.users-list>li {
+    float: left;
+    padding: 10px;
+    text-align: center;
+    width: 16.6%;
+}
+
+.navbar-logo img {
+    height: 50px;
+}
+
+.users-list>li img {
+    border-radius: 50%;
+    height: 128px;
+    max-width: 100%;
+    border: solid thin #dedede;
+}
+
+img.banner-user-image {
+    max-width: 47px;
+    background-color: #ffffff;
+}
+.user-panel .info {
+    display: inline-block;
+    width: 100%;
+    padding: 5px 5px 5px 10px;
+    text-align: right;
+}
+
+.avatar {
+    position: relative;
+    height: 2.625rem;
+    width: 2.625rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: .5rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+.avatar.avatar-lg {
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    font-size: 1rem;
+}
+.featured-nft {
+    border-radius: 50%;
+    overflow: hidden;
+    border: dotted 2px #000000;
+}
+.home-title {
+    font-weight: 700;
+}
+.home-left-items {
+    font-size: .8rem;
+}
+
+.user-badge {
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-color: purple;
+    color: #ffffff;
+}
+.panel-icon {
+    width: 89%;
+    margin-bottom: 10px;
+}
+.time-frame {
+    background-color: #000000;
+    border: 1px solid;
+    box-shadow: 0px 0px 15px white inset;
+    height: 113px;
+    color: #ffffff;
+}
+.category-link {
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--default-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: all ease .3s;
+}
+svg.category-svg {
+    height: 1.875rem;
+    width: 1.875rem;
+    -webkit-margin-after: 1rem;
+    margin-block-end: 1rem;
+    transition: all ease .3s;
+}
+
+.rem-left-margin{
+    margin-left: 0 !important; 
+}
+
+.grid-drop {
+    position: absolute;
+    right: 20px;
+    width: 340px;
+    z-index: 2;
+  }
+  .featured-nft-img {
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: dotted 2px;
+    display: inline-block;
+}
+.featured-nft-text {
+    display: inline-block;
+    height: 32px;
+    padding: 10px;
+    position: relative;
+    bottom: 10px;
+}
+
+img.grid-img {
+    width: 32px;
+}
