@@ -252,7 +252,7 @@
                                             <div class="form-group">
                                                 <label class="form-label" for="full-name-12">Pincode <span class="text-danger">*</span></label>
                                                 <div class="form-control-wrap">
-                                                    <input type="number" class="form-control @error('pincode') is-invalid @enderror" value="{{old('pincode')}}" name="pincode" placeholder="Enter Pincode" id="full-name-12" maxlength="6" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+                                                    <input type="text" class="form-control @error('pincode') is-invalid @enderror" value="{{old('pincode')}}" name="pincode" placeholder="Enter Pincode" id="full-name-12" maxlength="6" onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
                                                     @error('pincode')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
