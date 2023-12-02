@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="user-info d-none d-xl-block">
                                     <div class="user-status user-status-unverified">Welcome</div>
-                                    <div class="user-name dropdown-indicator"><?php echo e(Auth::user()->first_name." ".Auth::user()->last_name); ?></div>
+                                    <div class="user-name dropdown-indicator"><?php echo e(Auth::user()->first_name); ?></div>
                                 </div>
                             </div>
                         </a>
@@ -37,14 +37,14 @@
                                         </span>
                                     </div>
                                     <div class="user-info">
-                                        <span class="lead-text"><?php echo e(Auth::user()->first_name." ".Auth::user()->last_name); ?></span>
+                                        <span class="lead-text"><?php echo e(Auth::user()->first_name); ?></span>
                                         <span class="sub-text"><?php echo e(Auth::user()->email); ?></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="dropdown-inner">
                                 <ul class="link-list">
-                                    <li><a href="<?php echo e(url('changepassword')); ?>/<?php echo e(Auth::user()->id); ?>"><em class="icon ni ni-setting-alt"></em><span>Change Password</span></a></li>
+                                    <li><a href="<?php echo e(url('change-password')); ?>"><em class="icon ni ni-setting-alt"></em><span>Change Password</span></a></li>
                                     <!-- <li><a href="<?php echo e(config('app.baseURL')); ?>/changepassword/<?php echo e(Auth::user()->id); ?>"><em class="icon ni ni-setting-alt"></em><span>Change Password</span></a></li> -->
                                 </ul>
                             </div>

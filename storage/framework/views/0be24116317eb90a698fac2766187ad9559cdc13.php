@@ -41,6 +41,15 @@
                                     <label class="form-label">Search Here</label>
                                    <input type="text" id="search" class="form-control from-control-md" placeholder="Type into Search" onkeyup="callFilter()" name=""> 
                                 </div>
+                                <div class="col-lg-3">
+                                    <label class="form-label">Select DSA</label>
+                                    <select data-search="on" class="form-control form-select" onchange="callFilter()" id="agent_id" name="agent_id">
+                                        <option value="">Select DSA</option>
+                                        <?php $__currentLoopData = $agents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $agent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($agent->id); ?>" <?php if(old('agent_id')==$agent->id): ?> selected  <?php endif; ?> ><?php echo e($agent->first_name.' '.$agent->last_name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </select>
+                                </div>
                                 
                                 <div class="col-lg-12">
                                     <table class="table" id="myTable">
@@ -52,7 +61,7 @@
                                         <th>Email</th>
                                         <th>Contact Number</th>
                                         <th>Income Salary</th>
-                                        <!-- <th>Agent Name</th> -->
+                                        <th>DSA Name</th>
                                         <th>Created At</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -85,6 +94,7 @@
 
         search = $("#search").val();
         type = $("#type").val();
+        agent_id = $("#agent_id").val();
 
             NioApp.DataTable('#myTable', {
             "processing": true,
@@ -92,7 +102,7 @@
             "searching":false,
             "bLengthChange":false,
 
-            ajax:"<?php echo e(url('credit-card-leads')); ?>?name="+search+"&type="+type,
+            ajax:"<?php echo e(url('credit-card-leads')); ?>?name="+search+"&agent_id="+agent_id,
             "order":[
             [0,"desc"]
             ],
@@ -126,9 +136,9 @@
             {
                 "mData":"income_salary"
             },
-            // {
-            //     "mData":"agent_name"
-            // },
+            {
+                "mData":"agent_name"
+            },
             {
                 "mData":"created_at"
             },

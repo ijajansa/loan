@@ -15,7 +15,7 @@ class LoanApplicationController extends Controller
     {
     	if($request->ajax())
     	{
-	    	$data = LoanApplication::orderBy('loan_applications.id','DESC')->join('users','users.id','loan_applications.agent_id');
+	    	$data = LoanApplication::orderBy('loan_applications.id','DESC')->join('users','users.id','loan_applications.dsa_id');
             if($request->name!=null)
             {
                 $data = $data->where(function($query) use ($request){
@@ -25,6 +25,10 @@ class LoanApplicationController extends Controller
             if($request->type!=null)
             {
                 $data = $data->where('type',$request->type);
+            }
+            if($request->agent_id!=null)
+            {
+                $data = $data->where('loan_applications.dsa_id',$request->agent_id);
             }
             
             $data = $data->select('loan_applications.*','users.first_name as agent_first','users.last_name as agent_last');
@@ -67,7 +71,8 @@ class LoanApplicationController extends Controller
     	}
 
     	$types = LoanMaster::where('is_active',1)->orderBy('name','ASC')->get();
-    	return view('loan-applications.all',compact('types'));
+        $agents = User::where('role_id',2)->where('is_active',1)->orderBy('first_name','ASC')->orderBy('last_name','ASC')->get();
+    	return view('loan-applications.all',compact('types','agents'));
 
     }
 

@@ -20,7 +20,7 @@
                             <form method="POST" action="<?php echo e(url('dsa/edit')); ?>/<?php echo e($data->id); ?>" enctype="multipart/form-data">
                                 <?php echo csrf_field(); ?>
                                 <div class="row g-4">
-                                   <div class="col-lg-12">
+                                 <div class="col-lg-12">
                                     <h5 class="nk-block-title">Register DSA Form</h5>
                                     <hr>
                                 </div>
@@ -35,7 +35,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('first_name',$data->first_name)); ?>" name="first_name" placeholder="Enter First Name" id="full-name-1">
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('first_name',$data->first_name)); ?>" name="first_name" placeholder="Enter First Name" id="full-name-1" onkeypress="return (event.charCode > 64 && 
+                                            event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)">
                                             <?php $__errorArgs = ['first_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -62,7 +63,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('middle_name',$data->middle_name)); ?>" name="middle_name" placeholder="Enter Middle Name" id="full-name-2">
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('middle_name',$data->middle_name)); ?>" name="middle_name" placeholder="Enter Middle Name" id="full-name-2" onkeypress="return (event.charCode > 64 && 
+                                            event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)">
                                             <?php $__errorArgs = ['middle_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -89,7 +91,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('last_name',$data->last_name)); ?>" name="last_name" placeholder="Enter Last Name" id="full-name-3">
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('last_name',$data->last_name)); ?>" name="last_name" placeholder="Enter Last Name" id="full-name-3" onkeypress="return (event.charCode > 64 && 
+                                            event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)">
                                             <?php $__errorArgs = ['last_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -145,7 +148,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('mobile_number',$data->mobile_number)); ?>" name="mobile_number" placeholder="Enter Mobile Number" id="full-name-5">
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('mobile_number',$data->mobile_number)); ?>" name="mobile_number" placeholder="Enter Mobile Number" id="full-name-5" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="10">
                                             <?php $__errorArgs = ['mobile_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -173,7 +176,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('whatsapp_number',$data->whatsapp_number)); ?>" name="whatsapp_number" placeholder="Enter Whatsapp Number" id="full-name-6">
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('whatsapp_number',$data->whatsapp_number)); ?>" name="whatsapp_number" placeholder="Enter Whatsapp Number" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="10" id="full-name-6">
                                             <?php $__errorArgs = ['whatsapp_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -202,7 +205,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('pan_number',$data->pan_number)); ?>" name="pan_number" placeholder="Enter PAN Number" id="full-name-7">
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('pan_number',$data->pan_number)); ?>" name="pan_number" placeholder="Enter PAN Number" id="full-name-7" maxlength="10" onkeypress='return (event.charCode >= 48 && event.charCode <= 57) || (event.charCode > 64 && event.charCode < 91)' >
                                             <?php $__errorArgs = ['pan_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -230,7 +233,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('aadhar_number',$data->aadhar_number)); ?>" name="aadhar_number" placeholder="Enter Aadhar Number" id="full-name-8">
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('aadhar_number',$data->aadhar_number)); ?>" name="aadhar_number" placeholder="Enter Aadhar Number" id="full-name-8" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12">
                                             <?php $__errorArgs = ['aadhar_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -352,7 +355,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('gst_number',$data->gst_number)); ?>" name="gst_number" placeholder="Enter GST Number" id="full-name-10">
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('gst_number',$data->gst_number)); ?>" name="gst_number" placeholder="Enter GST Number" id="full-name-10" maxlength="15" onkeypress='return (event.charCode >= 48 && event.charCode <= 57) || (event.charCode > 64 && event.charCode < 91)' >
                                             <?php $__errorArgs = ['gst_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -409,14 +412,14 @@ unset($__errorArgs, $__bag); ?>
                                             <div class="form-group">
                                                 <label class="form-label" for="full-name-12">Pincode <span class="text-danger">*</span></label>
                                                 <div class="form-control-wrap">
-                                                    <input type="number" class="form-control <?php $__errorArgs = ['pincode'];
+                                                    <input type="text" class="form-control <?php $__errorArgs = ['pincode'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('pincode',$data->pincode)); ?>" name="pincode" placeholder="Enter Pincode" id="full-name-12">
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('pincode',$data->pincode)); ?>" name="pincode" placeholder="Enter Pincode" id="full-name-12" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="6">
                                                     <?php $__errorArgs = ['pincode'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -442,7 +445,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('city',$data->city)); ?>" name="city" placeholder="City">
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('city',$data->city)); ?>" name="city" placeholder="City" onkeypress="return (event.charCode > 64 && 
+                                                    event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)">
                                                     <?php $__errorArgs = ['city'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -468,7 +472,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('state',$data->state)); ?>" name="state" placeholder="State">
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('state',$data->state)); ?>" name="state" placeholder="State" onkeypress="return (event.charCode > 64 && 
+                                                    event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)">
                                                     <?php $__errorArgs = ['state'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -494,7 +499,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('country',$data->country)); ?>" name="country" placeholder="Country">
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('country',$data->country)); ?>" name="country" placeholder="Country" onkeypress="return (event.charCode > 64 && 
+                                                    event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)">
                                                     <?php $__errorArgs = ['country'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

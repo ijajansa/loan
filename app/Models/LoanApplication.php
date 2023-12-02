@@ -26,7 +26,8 @@ class LoanApplication extends Model
             'permanent_pincode',
             'loan_mode',
             'step',
-            'agent_id'
+            'agent_id',
+            'dsa_id'
     ];
 
     public function agents()

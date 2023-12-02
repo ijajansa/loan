@@ -8,6 +8,9 @@ use App\Http\Controllers\LoanApplicationController;
 use App\Http\Controllers\CardApplicationController;
 use App\Http\Controllers\LoanMasterController;
 use App\Http\Controllers\LoanDocumentController;
+use App\Http\Controllers\BankCommissionController;
+use App\Http\Controllers\BankCommissionCrController;
+use App\Http\Controllers\WalletRequestController;
 
 
 /*
@@ -24,10 +27,17 @@ use App\Http\Controllers\LoanDocumentController;
 Route::get('/', function () {
     return redirect('login');
 });
+Route::get('privacy-policy', function () {
+    return view('web.index');
+});
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('change-password',[PanelController::class, 'loadChangePasswordPage'])->middleware('permission.admin');
+Route::post('change-password',[PanelController::class, 'changePassword'])->middleware('permission.admin');
+
 
 Route::group(['prefix' => 'dsa', 'middleware'=> ['auth']], function(){
 	Route::get('/',[AgentController::class, 'all']);
@@ -82,6 +92,9 @@ Route::group(['prefix' => 'credit-card-leads', 'middleware'=> ['auth']], functio
 	Route::post('status/{id}',[CardApplicationController::class, 'status']);
 });
 
+	Route::get('wallet-history',[PanelController::class, 'loadWalletPage']);
+	Route::get('wallet-withdraw',[PanelController::class, 'loadWalletWithdrawPage']);
+	Route::post('wallet-withdraw',[PanelController::class, 'loadWalletWithdraw']);
 	Route::get('loan-panel',[PanelController::class, 'loadLoanPage']);
 	Route::get('credit-card',[PanelController::class, 'creditCardPage']);
 	Route::get('view-credit-card-details/{id}',[PanelController::class, 'viewCreditCardPage']);
@@ -92,3 +105,32 @@ Route::group(['prefix' => 'credit-card-leads', 'middleware'=> ['auth']], functio
 	Route::post('edit-dsa/{id}',[PanelController::class, 'updateDSA']);
 	Route::post('upload-document/{id}',[PanelController::class, 'uploadDocument']);
 
+
+Route::group(['prefix' => 'bank-commissions', 'middleware'=> ['auth']], function(){
+	Route::get('/',[BankCommissionController::class, 'all']);
+	Route::get('add',[BankCommissionController::class, 'add']);
+	Route::get('delete/{id}',[BankCommissionController::class, 'delete']);
+	Route::get('edit/{id}',[BankCommissionController::class, 'edit']);
+	Route::post('add',[BankCommissionController::class, 'insert']);
+	Route::get('status/{id}',[BankCommissionController::class, 'status']);
+	Route::post('edit/{id}',[BankCommissionController::class, 'update']);
+});
+Route::group(['prefix' => 'credit-card-commissions', 'middleware'=> ['auth']], function(){
+	Route::get('/',[BankCommissionCrController::class, 'all']);
+	Route::get('add',[BankCommissionCrController::class, 'add']);
+	Route::get('delete/{id}',[BankCommissionCrController::class, 'delete']);
+	Route::get('edit/{id}',[BankCommissionCrController::class, 'edit']);
+	Route::post('add',[BankCommissionCrController::class, 'insert']);
+	Route::get('status/{id}',[BankCommissionCrController::class, 'status']);
+	Route::post('edit/{id}',[BankCommissionCrController::class, 'update']);
+});
+
+Route::group(['prefix' => 'wallet-requests', 'middleware'=> ['auth']], function(){
+	Route::get('/',[WalletRequestController::class, 'all']);
+	Route::get('add',[WalletRequestController::class, 'add']);
+	Route::get('delete/{id}',[WalletRequestController::class, 'delete']);
+	Route::get('edit/{id}',[WalletRequestController::class, 'edit']);
+	Route::post('add',[WalletRequestController::class, 'insert']);
+	Route::get('status/{id}',[WalletRequestController::class, 'status']);
+	Route::post('edit/{id}',[WalletRequestController::class, 'update']);
+});

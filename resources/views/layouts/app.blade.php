@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Loan Lenders | Dashboard</title>
+  <title>MKGRAMEENA | Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -30,31 +30,51 @@
   <script src="{{asset('plugins/chart.js/Chart.js')}}"></script>
   <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-messaging.js"></script>
+<style type="text/css">
+  .headingHead{
+              letter-spacing: 18px;
+              font-size: 40px;
+              font-weight: bold;
+  }
+  .headingP{
+    letter-spacing: 13px;
+  }
 
+  @media(max-width: 600px){
+    .headingHead{
+              letter-spacing: 12px;
+              font-size: 20px;
+              font-weight: bold;
+  }
+  .headingP{
+    letter-spacing: 6px;
+  }    
+  }
+</style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img src="{{asset('dist/img/loading-buffering.gif')}}" alt="Loading" height="500" width="600">
-        </div>
-        <div class="content-wrapper" style="min-height:59.406px;margin-left:auto;">
-          <div class="content-header">
-            <div class="container-fluid">
-              <div class="row mb-2">
-                <div class="col-sm-4">
-                  <!--Home ver:2-->
-                  <!--<i class="fa fa-chevron-left"></i> Back-->
-              </div>
-              <div class="col-sm-4 text-center" style="cursor: pointer;" onclick=window.location.href='{{url("home")}}'>
-                  <!--<img src="{{asset('dist/img/logo.jpeg')}}" height="150px" alt="">-->
-                  <h4 class="mb-0">MKGRAMEENA</h4>
-                  <p>Your financial bridge</p>
-              </div>
-              <div class="col-sm-4 text-right">
-                  <a data-target="grid-drop" class="text-dark" href="javascript:void(0)" id="grid-icon" role="button">
-                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="grid" role="img" style="width:14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-grid fa-lg">
-                      <path fill="currentColor" d="M0 72C0 49.9 17.9 32 40 32H88c22.1 0 40 17.9 40 40v48c0 22.1-17.9 40-40 40H40c-22.1 0-40-17.9-40-40V72zM0 232c0-22.1 17.9-40 40-40H88c22.1 0 40 17.9 40 40v48c0 22.1-17.9 40-40 40H40c-22.1 0-40-17.9-40-40V232zM128 392v48c0 22.1-17.9 40-40 40H40c-22.1 0-40-17.9-40-40V392c0-22.1 17.9-40 40-40H88c22.1 0 40 17.9 40 40zM160 72c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40v48c0 22.1-17.9 40-40 40H200c-22.1 0-40-17.9-40-40V72zM288 232v48c0 22.1-17.9 40-40 40H200c-22.1 0-40-17.9-40-40V232c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40zM160 392c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40v48c0 22.1-17.9 40-40 40H200c-22.1 0-40-17.9-40-40V392zM448 72v48c0 22.1-17.9 40-40 40H360c-22.1 0-40-17.9-40-40V72c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40zM320 232c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40v48c0 22.1-17.9 40-40 40H360c-22.1 0-40-17.9-40-40V232zM448 392v48c0 22.1-17.9 40-40 40H360c-22.1 0-40-17.9-40-40V392c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40z" class=""></path>
-                  </svg>
+  <div class="wrapper">
+    <div class="preloader flex-column justify-content-center align-items-center">
+      <img src="{{asset('dist/img/loading-buffering.gif')}}" alt="Loading" height="500" width="600">
+    </div>
+    <div class="content-wrapper" style="min-height:59.406px;margin-left:auto;">
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-4">
+              <!--Home ver:2-->
+              <!--<i class="fa fa-chevron-left"></i> Back-->
+            </div>
+            <div class="col-sm-4 text-center" style="cursor: pointer;" onclick=window.location.href='{{url("home")}}'>
+              <!--<img src="{{asset('dist/img/logo.jpeg')}}" height="150px" alt="">-->
+              <h4 class="mb-0 headingHead">MKGRAMEENA</h4>
+              <p class="headingP" >Your financial bridge</p>
+            </div>
+            <div class="col-sm-4 text-right">
+              <a data-target="grid-drop" class="text-dark" href="javascript:void(0)" id="grid-icon" role="button">
+                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="grid" role="img" style="width:14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-grid fa-lg">
+                  <path fill="currentColor" d="M0 72C0 49.9 17.9 32 40 32H88c22.1 0 40 17.9 40 40v48c0 22.1-17.9 40-40 40H40c-22.1 0-40-17.9-40-40V72zM0 232c0-22.1 17.9-40 40-40H88c22.1 0 40 17.9 40 40v48c0 22.1-17.9 40-40 40H40c-22.1 0-40-17.9-40-40V232zM128 392v48c0 22.1-17.9 40-40 40H40c-22.1 0-40-17.9-40-40V392c0-22.1 17.9-40 40-40H88c22.1 0 40 17.9 40 40zM160 72c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40v48c0 22.1-17.9 40-40 40H200c-22.1 0-40-17.9-40-40V72zM288 232v48c0 22.1-17.9 40-40 40H200c-22.1 0-40-17.9-40-40V232c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40zM160 392c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40v48c0 22.1-17.9 40-40 40H200c-22.1 0-40-17.9-40-40V392zM448 72v48c0 22.1-17.9 40-40 40H360c-22.1 0-40-17.9-40-40V72c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40zM320 232c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40v48c0 22.1-17.9 40-40 40H360c-22.1 0-40-17.9-40-40V232zM448 392v48c0 22.1-17.9 40-40 40H360c-22.1 0-40-17.9-40-40V392c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40z" class=""></path>
+                </svg>
               </a> &nbsp; &nbsp;
               <div class="grid-drop" style="display:none">
                 <div class="card custom-card overflow-hidden">
@@ -63,123 +83,123 @@
                       <div class="col-12 text-center">
                         <div class="featured-nft-img">
                           <img style="max-width:100%;" src="{{url('storage/app')}}/{{Auth::user()->profile}}" alt="">
+                        </div>
+                        <span class="featured-nft-text">{{Auth::user()->first_name}}  {{Auth::user()->middle_name}}  {{Auth::user()->last_name}} </span>
                       </div>
-                      <span class="featured-nft-text">{{Auth::user()->first_name}}  {{Auth::user()->middle_name}}  {{Auth::user()->last_name}} </span>
+                      <div class="col-12">
+                        <div class="row">
+                          <div class="col-sm-4 text-center">
+                            <small><strong>ID :</strong> {{10000+Auth::user()->id}}</small>
+                          </div>
+                          <div class="col-sm-4 text-center">
+                            <small>-</small>
+                          </div>
+                          <div class="col-sm-4 text-center">
+                            <small><strong>PPI: </strong>
+                              @if(Auth::user()->is_active ==1)
+                              <strong class="text-success">Active</strong>
+                              @else
+                              <strong class="text-danger">Inactive</strong>
+                              @endif
+                              <a title="PPI Settings" href="javascript:void(0)" role="button"> <i class="fas fa-cog"></i></a></small>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <hr>
+                          <div class="row">
+                            <div class="col-4 text-center">
+                              <a href="javascript:void(0)" class="text-dark">
+                                <img src="{{asset('dist/img/home_icons/calculator.png')}}" class="grid-img" alt="Emi Calculator"><br>
+                                <small>EMI Calculator <i class="fa-solid fa-arrow-up-right-from-square"></i></small>
+                              </a>
+                            </div>
+                            <div class="col-4 text-center">
+                              <a href="javascript:void(0)" class="text-dark">
+                                <img src="{{asset('dist/img/home_icons/teamviewer.png')}}" class="grid-img" alt="TeamViewer"><br>
+                                <small>TeamViewer <i class="fa-solid fa-arrow-up-right-from-square"></i></small>
+                              </a>
+                            </div>
+                            <div class="col-4 text-center">
+                              <a href="javascript:void(0)" class="text-dark">
+                                <img src="{{asset('dist/img/home_icons/computer.png')}}" class="grid-img" alt="Any Desk"><br>
+                                <small>Anydesk <i class="fa-solid fa-arrow-up-right-from-square"></i></small>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-12">
-                    <div class="row">
-                      <div class="col-sm-4 text-center">
-                        <small><strong>ID :</strong> {{10000+Auth::user()->id}}</small>
-                    </div>
-                    <div class="col-sm-4 text-center">
-                        <small>-</small>
-                    </div>
-                    <div class="col-sm-4 text-center">
-                        <small><strong>PPI: </strong>
-                          @if(Auth::user()->is_active ==1)
-                          <strong class="text-success">Active</strong>
-                          @else
-                          <strong class="text-danger">Inactive</strong>
-                          @endif
-                           <a title="PPI Settings" href="javascript:void(0)" role="button"> <i class="fas fa-cog"></i></a></small>
-                    </div>
                 </div>
-            </div>
-            <div class="col-12">
-                <hr>
-                <div class="row">
-                  <div class="col-4 text-center">
-                    <a href="https://loanlenders.in/tools.html" target="_blank" class="text-dark">
-                      <img src="{{asset('dist/img/home_icons/calculator.png')}}" class="grid-img" alt="Emi Calculator"><br>
-                      <small>EMI Calculator <i class="fa-solid fa-arrow-up-right-from-square"></i></small>
-                  </a>
+                <a data-widget="fullscreen" class="text-dark" href="#" role="button">
+                  <i class="fas fa-expand-arrows-alt"></i>
+                </a> &nbsp; &nbsp;
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-dark" role="button">
+                  <i class="fas fa-sign-out-alt"></i>
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  <!-- {{ csrf_field() }} -->
+                  <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                </form>  
+
               </div>
-              <div class="col-4 text-center">
-                <a href="https://www.teamviewer.com/en-in/download/windows/" target="_blank" class="text-dark">
-                  <img src="{{asset('dist/img/home_icons/teamviewer.png')}}" class="grid-img" alt="TeamViewer"><br>
-                  <small>TeamViewer <i class="fa-solid fa-arrow-up-right-from-square"></i></small>
-              </a>
+            </div>
           </div>
-          <div class="col-4 text-center">
-            <a href="https://anydesk.com/en/downloads/windows" target="_blank" class="text-dark">
-              <img src="{{asset('dist/img/home_icons/computer.png')}}" class="grid-img" alt="Any Desk"><br>
-              <small>Anydesk <i class="fa-solid fa-arrow-up-right-from-square"></i></small>
-          </a>
+        </div>
+
+        @yield('content')
+
       </div>
-  </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<a data-widget="fullscreen" class="text-dark" href="#" role="button">
-    <i class="fas fa-expand-arrows-alt"></i>
-</a> &nbsp; &nbsp;
-<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-dark" role="button">
-    <i class="fas fa-sign-out-alt"></i>
-</a>
-<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-    <!-- {{ csrf_field() }} -->
-    <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-</form>  
 
-</div>
-</div>
-</div>
-</div>
+      <!-- common popups -->
 
-@yield('content')
+      <!-- common popups end -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+      </aside>
+      <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
 
-</div>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+      $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <!-- ChartJS -->
+    <script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
+    <!-- Sparkline -->
+    <script src="{{asset('plugins/sparklines/sparkline.js')}}"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="{{asset('plugins/jquery-knob/jquery.knob.min.js')}}"></script>
+    <!-- Summernote -->
+    <script src="{{asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
+    <!-- overlayScrollbars -->
+    <script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+    <script src="{{asset('dist/js/adminlte.js')}}"></script>
+    <script src="{{asset('dist/js/jquery.countdown.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <script src="{{asset('dist/js/common.js')}}"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <!--  -->
+    <script src="{{asset('plugins/toastr/toastr.min.js?v=14')}}"></script>
+    <script src="{{asset('plugins/select2/js/select2.min.js?v=14')}}"></script>
+    <script src="{{asset('dist/js/switch.action.js?v=14')}}"></script>
+    <script src="{{asset('dist/js/hm.document.upload.js?v=14')}}"></script>
+    <script src="{{asset('plugins/dropzone/min/dropzone.min.js?v=14')}}"></script>
+    <script src="{{asset('plugins/moment/moment.min.js?v=14')}}"></script>
+    <script src="{{asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.js?v=14')}}"></script>
+    <script>
+     $(document).ready(function(){
+      $(".preloader").hide();
 
-<!-- common popups -->
+      $("#grid-icon").click(function() {
+        $(".grid-drop").toggle();
+      });
 
-<!-- common popups end -->
-<aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-</aside>
-<!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button);
-</script>
-<!-- Bootstrap 4 -->
-<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- ChartJS -->
-<script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
-<!-- Sparkline -->
-<script src="{{asset('plugins/sparklines/sparkline.js')}}"></script>
-<!-- jQuery Knob Chart -->
-<script src="{{asset('plugins/jquery-knob/jquery.knob.min.js')}}"></script>
-<!-- Summernote -->
-<script src="{{asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
-<!-- overlayScrollbars -->
-<script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
-<script src="{{asset('dist/js/adminlte.js')}}"></script>
-<script src="{{asset('dist/js/jquery.countdown.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-<script src="{{asset('dist/js/common.js')}}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<!--  -->
-<script src="{{asset('plugins/toastr/toastr.min.js?v=14')}}"></script>
-<script src="{{asset('plugins/select2/js/select2.min.js?v=14')}}"></script>
-<script src="{{asset('dist/js/switch.action.js?v=14')}}"></script>
-<script src="{{asset('dist/js/hm.document.upload.js?v=14')}}"></script>
-<script src="{{asset('plugins/dropzone/min/dropzone.min.js?v=14')}}"></script>
-<script src="{{asset('plugins/moment/moment.min.js?v=14')}}"></script>
-<script src="{{asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.js?v=14')}}"></script>
-<script>
- $(document).ready(function(){
-    $(".preloader").hide();
-
-     $("#grid-icon").click(function() {
-      $(".grid-drop").toggle();
     });
-
- });
-</script>
+  </script>
 </body>
 </html>

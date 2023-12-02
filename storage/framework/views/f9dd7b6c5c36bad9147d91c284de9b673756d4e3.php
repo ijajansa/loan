@@ -31,7 +31,7 @@
           </div>
           
           <div>
-            hello@loanpanel.in
+            contact@mkgrameennidhi.com
           </div>
           <div class="invalid-feedback">Email is not Valid.</div>
         </div>
@@ -41,7 +41,7 @@
     <div class="col-sm-6">
       <div class="login-box">
         <div class="login-logo">
-          <a href="<?php echo e(url('/')); ?>"><b>Loan</b>LENDERS</a>
+          <a href="<?php echo e(url('/')); ?>"><b>MK GRAMIN </b>NIDHI</a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -52,13 +52,22 @@
                 <?php echo csrf_field(); ?>
               <div class="input-group mb-3">
                 <input type="hidden" name="logintype" value="password" id="logintype">
-                <input type="email" class="form-control" placeholder="Email" id="email" name="email" required>
+                <input type="email" class="form-control" placeholder="Email" id="email" value="<?php echo e(old('email')); ?>" name="email" required>
                 <div class="input-group-append">
                   <div class="input-group-text">
                     <span class="fas fa-envelope"></span>
                   </div>
                 </div>
-                <div class="invalid-feedback">Email is not Valid.</div>
+                <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                <div class="invalid-feedback" style="display: block"><?php echo e($message); ?></div>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
               </div>
               <div class="input-group mb-3" id="password_filed">
                 <input type="password" class="form-control" placeholder="Password" id="password" name="password">
@@ -93,11 +102,11 @@
                   &nbsp;
                 </div>
               </div>
-              <div class="row">
+              <!-- <div class="row">
                 <div class="col text-center">
                   <a class="text-danger" href="index26d0.html?path=user&amp;method=forgotpassword">Forgot Password</a>
                 </div>
-              </div>
+              </div> -->
               <div class="row">
                 <div class="col text-danger" id="login-error"></div>
               </div>

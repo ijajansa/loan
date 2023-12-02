@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="user-info d-none d-xl-block">
                                     <div class="user-status user-status-unverified">Welcome</div>
-                                    <div class="user-name dropdown-indicator">{{Auth::user()->first_name." ".Auth::user()->last_name}}</div>
+                                    <div class="user-name dropdown-indicator">{{Auth::user()->first_name}}</div>
                                 </div>
                             </div>
                         </a>
@@ -37,14 +37,14 @@
                                         </span>
                                     </div>
                                     <div class="user-info">
-                                        <span class="lead-text">{{Auth::user()->first_name." ".Auth::user()->last_name}}</span>
+                                        <span class="lead-text">{{Auth::user()->first_name}}</span>
                                         <span class="sub-text">{{Auth::user()->email}}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="dropdown-inner">
                                 <ul class="link-list">
-                                    <li><a href="{{url('changepassword')}}/{{Auth::user()->id}}"><em class="icon ni ni-setting-alt"></em><span>Change Password</span></a></li>
+                                    <li><a href="{{url('change-password')}}"><em class="icon ni ni-setting-alt"></em><span>Change Password</span></a></li>
                                     <!-- <li><a href="{{config('app.baseURL')}}/changepassword/{{Auth::user()->id}}"><em class="icon ni ni-setting-alt"></em><span>Change Password</span></a></li> -->
                                 </ul>
                             </div>

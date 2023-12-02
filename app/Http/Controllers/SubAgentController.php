@@ -13,6 +13,10 @@ class SubAgentController extends Controller
     	if($request->ajax())
     	{
     		$data = User::where('role_id',3)->orderBy('id','ASC');
+            if($request->agent_id!=null)
+            {
+                $data = $data->where('agent_id',$request->agent_id);
+            }
     		return DataTables::of($data)->
     		addColumn('profile',function($data){
     			if($data->profile!=null)

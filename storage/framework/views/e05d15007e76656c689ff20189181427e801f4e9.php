@@ -41,7 +41,7 @@
                                     <input type="text" placeholder="Type into Search" class="form-control">
                                 </div>
                                 <div class="col-lg-3">
-                                    <select data-search="on" class="form-control form-select" name="agent_id">
+                                    <select data-search="on" class="form-control form-select" onchange="callFunction()" id="agent_id" name="agent_id">
                                                 <option value="">Select DSA</option>
                                                 <?php $__currentLoopData = $agents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $agent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <option value="<?php echo e($agent->id); ?>" <?php if(old('agent_id')==$agent->id): ?> selected  <?php endif; ?> ><?php echo e($agent->first_name.' '.$agent->last_name); ?></option>
@@ -78,14 +78,25 @@
     $(document).ready(function(){
         chartdataTable();
     });
+
+    function callFunction()
+    {
+        $("#myTable").DataTable().clear().destroy();
+        chartdataTable();
+
+    }
+
     function chartdataTable(){
+
+            agent_id = $("#agent_id").val();
+
             NioApp.DataTable('#myTable', {
             "processing": true,
             "serverSide": true,
             "searching":false,
             "bLengthChange":false,
 
-            ajax:"<?php echo e(url('sub-dsa')); ?>",
+            ajax:"<?php echo e(url('sub-dsa')); ?>?agent_id="+agent_id,
             "order":[
             [0,"desc"]
             ],

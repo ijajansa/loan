@@ -31,6 +31,7 @@ class CreditCard extends Model
 		'step',
 		'status',
 		'agent_id',
+		'dsa_id',
 		'created_at',
 		'updated_at'
 	];

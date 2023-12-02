@@ -15,12 +15,16 @@ class CardApplicationController extends Controller
     {
     	if($request->ajax())
     	{
-	    	$data = CreditCard::orderBy('credit_cards.id','DESC')->join('users','users.id','credit_cards.agent_id');
+	    	$data = CreditCard::orderBy('credit_cards.id','DESC')->join('users','users.id','credit_cards.dsa_id');
             if($request->name!=null)
             {
                 $data = $data->where(function($query) use ($request){
                     $query->where('credit_cards.first_name','like','%'.$request->name.'%')->orWhere('credit_cards.last_name','like','%'.$request->name.'%')->orWhere('credit_cards.dob','like','%'.$request->name.'%')->orWhere('credit_cards.email','like','%'.$request->name.'%')->orWhere('credit_cards.mobile_number','like','%'.$request->name.'%')->orWhere('credit_cards.income_salary','like','%'.$request->name.'%');
                 });
+            }
+            if($request->agent_id!=null)
+            {
+                $data = $data->where('credit_cards.dsa_id',$request->agent_id);
             }
             
             $data = $data->select('credit_cards.*','users.first_name as agent_first','users.last_name as agent_last');
@@ -61,8 +65,8 @@ class CardApplicationController extends Controller
             })
     		->rawColumns(['full_name','agent_name','status','action','created_at'])->make(true);    		
     	}
-
-    	return view('card-leads.all');
+        $agents = User::where('role_id',2)->where('is_active',1)->orderBy('first_name','ASC')->orderBy('last_name','ASC')->get();
+    	return view('card-leads.all',compact('agents'));
 
     }
 

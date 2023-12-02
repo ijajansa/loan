@@ -13,4 +13,9 @@ class LoanMaster extends Model
     {
     	return $this->hasMany('App\Models\LoanApplication','type','id');
     }
+
+    public function commission_details()
+    {
+    	return $this->hasMany('App\Models\BankCommission','loan_master_id','id');	
+    }
 }

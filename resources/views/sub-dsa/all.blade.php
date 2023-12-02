@@ -41,7 +41,7 @@
                                     <input type="text" placeholder="Type into Search" class="form-control">
                                 </div>
                                 <div class="col-lg-3">
-                                    <select data-search="on" class="form-control form-select" name="agent_id">
+                                    <select data-search="on" class="form-control form-select" onchange="callFunction()" id="agent_id" name="agent_id">
                                                 <option value="">Select DSA</option>
                                                 @foreach($agents as $agent)
                                                 <option value="{{$agent->id}}" @if(old('agent_id')==$agent->id) selected  @endif >{{$agent->first_name.' '.$agent->last_name}}</option>
@@ -78,14 +78,25 @@
     $(document).ready(function(){
         chartdataTable();
     });
+
+    function callFunction()
+    {
+        $("#myTable").DataTable().clear().destroy();
+        chartdataTable();
+
+    }
+
     function chartdataTable(){
+
+            agent_id = $("#agent_id").val();
+
             NioApp.DataTable('#myTable', {
             "processing": true,
             "serverSide": true,
             "searching":false,
             "bLengthChange":false,
 
-            ajax:"{{url('sub-dsa')}}",
+            ajax:"{{url('sub-dsa')}}?agent_id="+agent_id,
             "order":[
             [0,"desc"]
             ],

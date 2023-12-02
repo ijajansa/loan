@@ -11,7 +11,7 @@
   <!-- StyleSheets  -->
   <link rel="stylesheet" href="{{ asset('assets/css/dashlite.css') }}">
   <link id="skin-default" rel="stylesheet" href="{{ asset('assets/css/theme.css?ver=2.7.0') }}">
-  <title>Loan Dashoard | Admin</title>
+  <title>MKGRAMEENA | Loan Dashboard | Admin</title>
 
   <!-- Img icon -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

@@ -41,6 +41,15 @@
                                     <label class="form-label">Search Here</label>
                                    <input type="text" id="search" class="form-control from-control-md" placeholder="Type into Search" onkeyup="callFilter()" name=""> 
                                 </div>
+                                <div class="col-lg-3">
+                                    <label class="form-label">Select DSA</label>
+                                    <select data-search="on" class="form-control form-select" onchange="callFilter()" id="agent_id" name="agent_id">
+                                        <option value="">Select DSA</option>
+                                        @foreach($agents as $agent)
+                                        <option value="{{$agent->id}}" @if(old('agent_id')==$agent->id) selected  @endif >{{$agent->first_name.' '.$agent->last_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 
                                 <div class="col-lg-12">
                                     <table class="table" id="myTable">
@@ -52,7 +61,7 @@
                                         <th>Email</th>
                                         <th>Contact Number</th>
                                         <th>Income Salary</th>
-                                        <!-- <th>Agent Name</th> -->
+                                        <th>DSA Name</th>
                                         <th>Created At</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -85,6 +94,7 @@
 
         search = $("#search").val();
         type = $("#type").val();
+        agent_id = $("#agent_id").val();
 
             NioApp.DataTable('#myTable', {
             "processing": true,
@@ -92,7 +102,7 @@
             "searching":false,
             "bLengthChange":false,
 
-            ajax:"{{url('credit-card-leads')}}?name="+search+"&type="+type,
+            ajax:"{{url('credit-card-leads')}}?name="+search+"&agent_id="+agent_id,
             "order":[
             [0,"desc"]
             ],
@@ -126,9 +136,9 @@
             {
                 "mData":"income_salary"
             },
-            // {
-            //     "mData":"agent_name"
-            // },
+            {
+                "mData":"agent_name"
+            },
             {
                 "mData":"created_at"
             },

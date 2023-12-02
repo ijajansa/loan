@@ -9,6 +9,7 @@ use App\Models\LoanMasterDocument;
 use App\Models\LoanUserDocument;
 use App\Models\User;
 use App\Models\CreditCard;
+use App\Models\WalletRequest;
 use Auth;
 
 
@@ -22,14 +23,7 @@ class PanelController extends Controller
             $applications = LoanApplication::leftJoin('loan_masters','loan_masters.id','loan_applications.type')->join('users','users.id','loan_applications.agent_id')->orderBy('loan_applications.created_at','DESC');
             if(Auth::user()->role_id==2)
             {
-                $arr=[];
-                $ids = User::where('agent_id',Auth::user()->id)->pluck('id');
-                array_push($arr,Auth::user()->id);
-                foreach($ids as $id)
-                {
-                    array_push($arr,$id);
-                }
-                $applications = $applications->whereIn('loan_applications.agent_id',$arr);
+                $applications = $applications->where('loan_applications.dsa_id',Auth::user()->id);
             }
             else
             {
@@ -135,8 +129,12 @@ class PanelController extends Controller
     	]);
     	$data = $request->all();
     	unset($data['_token']);
-    	$data['agent_id'] = \Auth::user()->id ?? 0;
+        if(\Auth::user()->role_id==2)
+        $data['dsa_id'] = \Auth::user()->id ?? 0;
+        else
+        $data['dsa_id'] = \Auth::user()->agent_id ?? 0;
 
+        $data['agent_id'] = \Auth::user()->id ?? 0;
     	$record = LoanApplication::create($data);
 
     	return redirect('view-loan/'.$record->id)->with('success','Loan Application Uploaded Successfully');
@@ -204,6 +202,11 @@ class PanelController extends Controller
         date_default_timezone_set("Asia/Kolkata");
         $data = $request->all();
         $data['agent_id'] = \Auth::user()->id ?? 0;
+        if(\Auth::user()->role_id==2)
+        $data['dsa_id'] = \Auth::user()->id ?? 0;
+        else
+        $data['dsa_id'] = \Auth::user()->agent_id ?? 0;
+
         $data['status'] = "PDC";
         $data['created_at'] = date('Y-m-d H:i:s');
         $data['updated_at'] = date('Y-m-d H:i:s');
@@ -228,14 +231,7 @@ class PanelController extends Controller
         $data = CreditCard::orderBy('credit_cards.id','DESC');
         if(Auth::user()->role_id==2)
             {
-                $arr=[];
-                $ids = User::where('agent_id',Auth::user()->id)->pluck('id');
-                array_push($arr,Auth::user()->id);
-                foreach($ids as $id)
-                {
-                    array_push($arr,$id);
-                }
-                $data = $data->whereIn('credit_cards.agent_id',$arr);
+                $data = $data->where('credit_cards.dsa_id',Auth::user()->id);
             }
             else
             {
@@ -244,5 +240,72 @@ class PanelController extends Controller
         $data = $data->select('credit_cards.*')->paginate(10);
 
         return view('front.list-credit-card',compact('data'));
+    }
+
+    public function loadChangePasswordPage()
+    {
+        return view('card-leads.add');
+    }
+
+    public function changePassword(Request $request)
+    {
+        $id = Auth::user()->id;
+        $data = User::find($id);
+        $data->first_name = $request->first_name;
+        $data->email = $request->email;
+        if($request->password!=null)
+        {
+            $data->password = \Hash::make($request->password);
+            $data->visible_password = $request->password;
+        }
+        $data->save();
+        return redirect()->back()->with('success','Username and password changed successfully');
+    }
+
+    public function loadWalletPage()
+    {
+        $histories = WalletRequest::where('dsa_id',Auth::user()->id)->orderBy('id','DESC')->get(); 
+        return view('front.wallet-history',compact('histories'));
+    } 
+
+    public function loadWalletWithdrawPage()
+    {
+        return view('front.wallet-request');
+    }
+    public function loadWalletWithdraw(Request $request)
+    {
+        $request->validate([
+            'amount' => 'required',
+            'account_holder_name' => 'required',
+            'bank_name' => 'required',
+            'account_number' => 'required',
+            'ifsc_code' => 'required',
+            'account_type' => 'required'
+        ]);
+        $check = Auth::user()->wallet - $request->amount;
+        if($check<0)
+        {
+            return redirect()->back()->with('error','Invalid amount please try again later');
+        }
+
+        date_default_timezone_set('Asia/Kolkata');
+
+        $data = new WalletRequest();
+        $data->amount = $request->amount;
+        $data->accountant_name = $request->account_holder_name;
+        $data->bank_name = $request->bank_name;
+        $data->account_number = $request->account_number;
+        $data->ifsc_code = $request->ifsc_code;
+        $data->account_type = $request->account_type;
+        $data->request_type = 1;
+        $data->dsa_id = Auth::user()->id;
+        $data->save();
+        if($data)
+        {
+            $user = User::find(Auth::user()->id);
+            $user->wallet = Auth::user()->wallet - $request->amount;
+            $user->save();
+        }
+        return redirect('wallet-history')->with('success','Withdraw request sent successfully');
     }
 }
