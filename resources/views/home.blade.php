@@ -425,7 +425,7 @@
 
                                   <td>{{$record->mobile_number ?? ''}}</td>
                                   <td>{{$record->email ?? ''}}</td>
-                                  <td>Review Not Submited</td>
+                                  <td>{{$record->review ?? '-'}}</td>
                                   <td>
                                     @if($record->status=='PDC')
                                     <span class="badge bg-indigo">PD-C</span>

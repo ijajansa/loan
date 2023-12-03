@@ -34,7 +34,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-md-12 text-center">
-                  Transferable Balance <h2><span class="badge bg-success">{{Auth::user()->wallet??0}}</span></h2>
+                  Transferable Balance <h2><span class="badge bg-success">₹{{number_format(Auth::user()->wallet??0)}}</span></h2>
                 </div>
               </div>
 

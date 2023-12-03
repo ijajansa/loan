@@ -79,20 +79,7 @@
                 </td>
               </tr>
               @endforeach
-              
-              <tr>
-                <td>11 Aug 2023 08:29:47am</td>
-                <td>
-                  Commition received from Loan Lead ID: 33576
-                </td>
-                <td>
-                  <span class="text-success">
-                  17622.00</span> 
-                  <span class="badge bg-success">
-                  CR</span><br>
-                  <span class="badge bg-success">Success</span>
-                </td>
-              </tr>
+             
             </tbody>
           </table>
         </div>

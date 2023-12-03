@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\CreditCard;
 use App\Models\LoanUserDocument;
 use App\Models\LoanMaster;
+use App\Models\BankCommissionCr;
+use App\Models\WalletRequest;
 
 class CardApplicationController extends Controller
 {
@@ -75,18 +77,51 @@ class CardApplicationController extends Controller
         $data = CreditCard::where('credit_cards.id',$id)->with('agents')->select('credit_cards.*')
         ->first();
         $documents = [];
-        return view('card-leads.edit',compact('data','documents'));
+        $banks = BankCommissionCr::orderBy('bank_name','ASC')->get();
+        return view('card-leads.edit',compact('data','documents','banks'));
     }
 
     public function status(Request $request)
     {
+        date_default_timezone_set('Asia/Kolkata');
+        
+        $request->validate([
+            'status' => 'required',
+            'bank_id' => 'required_if:status,==,"Disbursement"',
+            'commission' => 'required_if:status,==,"Disbursement"'
+        ]);
+
         $data = CreditCard::where('id',$request->id)->first();
         if($data)
         {
+            $explode = explode(',',$request->bank_id);
             $data->status = $request->status;
+            $data->bank_id = $explode[0] ?? null;
+            $data->commission = $request->commission ?? null;
+            $data->review = $request->review ?? null;
             $data->save();
-            return redirect()->back()->with('success','Application status updated successfully');
+            if($data){
+                if($request->status == 'Disbursement')
+                {
+                    $user = User::find($data->dsa_id);
+                    if($user)
+                    {
+                        $commission_amount = $request->commission;
+                        $user->wallet = $user->wallet + $commission_amount;
+                        $user->save();
 
+                        $wallet_request = new WalletRequest();
+                        $wallet_request->type = 2;
+                        $wallet_request->dsa_id = $user->id;
+                        $wallet_request->request_type = 2;
+                        $wallet_request->status = "success";
+                        $wallet_request->message = "Commition received from Credit Card Lead ID: ". 5000 + $data->id." ";
+                        $wallet_request->amount = $commission_amount;
+                        $wallet_request->save();
+                    }
+                }
+            }
+            return redirect()->back()->with('success','Application status updated successfully');
         }
         return redirect()->back()->with('error','Something went wrong');
 

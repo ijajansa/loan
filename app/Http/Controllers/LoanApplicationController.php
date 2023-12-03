@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\LoanApplication;
 use App\Models\LoanUserDocument;
 use App\Models\LoanMaster;
+use App\Models\BankCommission;
+use App\Models\WalletRequest;
 
 class LoanApplicationController extends Controller
 {
@@ -86,18 +88,53 @@ class LoanApplicationController extends Controller
             $documents = LoanUserDocument::where('application_id',$data->id)->get();
         else
             $documents = null;
-        return view('loan-applications.edit',compact('data','documents'));
+
+        $banks = BankCommission::where('loan_master_id',$data->type)->orderBy('bank_name','ASC')->get();
+
+        return view('loan-applications.edit',compact('data','documents','banks'));
     }
 
     public function status(Request $request)
     {
+        date_default_timezone_set('Asia/Kolkata');
+        
+        $request->validate([
+            'status' => 'required',
+            'bank_id' => 'required_if:status,==,"Disbursement"',
+            'commission' => 'required_if:status,==,"Disbursement"'
+        ]);
+
         $data = LoanApplication::where('id',$request->id)->first();
         if($data)
         {
+            $explode = explode(',',$request->bank_id);
             $data->status = $request->status;
+            $data->bank_id = $explode[0] ?? null;
+            $data->commission = $request->commission ?? null;
+            $data->review = $request->review ?? null;
             $data->save();
-            return redirect()->back()->with('success','Application status updated successfully');
+            if($data){
+                if($request->status == 'Disbursement')
+                {
+                    $user = User::find($data->dsa_id);
+                    if($user)
+                    {
+                        $commission_amount = $data->requested_amount * $request->commission/100;
+                        $user->wallet = $user->wallet + $commission_amount;
+                        $user->save();
 
+                        $wallet_request = new WalletRequest();
+                        $wallet_request->type = 2;
+                        $wallet_request->dsa_id = $user->id;
+                        $wallet_request->request_type = 2;
+                        $wallet_request->status = "success";
+                        $wallet_request->message = "Commition received from Loan Lead ID: ". 10000 + $data->id." ";
+                        $wallet_request->amount = $commission_amount;
+                        $wallet_request->save();
+                    }
+                }
+            }
+            return redirect()->back()->with('success','Application status updated successfully');
         }
         return redirect()->back()->with('error','Something went wrong');
 

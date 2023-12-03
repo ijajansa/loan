@@ -427,7 +427,7 @@
 
                                   <td><?php echo e($record->mobile_number ?? ''); ?></td>
                                   <td><?php echo e($record->email ?? ''); ?></td>
-                                  <td>Review Not Submited</td>
+                                  <td><?php echo e($record->review ?? '-'); ?></td>
                                   <td>
                                     <?php if($record->status=='PDC'): ?>
                                     <span class="badge bg-indigo">PD-C</span>
