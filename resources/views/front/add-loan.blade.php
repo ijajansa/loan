@@ -81,7 +81,7 @@
       <div class="form-group required">
        <label for="InputDob" class="control-label">Date of Birth <small>DD-MM-YYYY</small> </label>
        <div class="input-group date" id="Dob" data-target-input="nearest">
-        <input type="date" id="dobInput" name="dob" class="form-control @error('dob') is-invalid @enderror" autocomplete="off" value="{{old('dob')}}">
+        <input type="date" id="dobInput" name="dob" class="form-control @error('dob') is-invalid @enderror" autocomplete="off" max="{{date('Y-m-d')}}" value="{{old('dob')}}">
         @error('dob')
         <span class="invalid-feedback" role="alert">
           <strong>{{ $message }}</strong>
@@ -98,7 +98,8 @@
 <div class="col-md-4">
   <div class="form-group required">
    <label for="InputFirstName" class="control-label">First Name</label>
-   <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" id="InputFirstName" placeholder="Enter First Name" value="{{old('first_name')}}">
+   <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" id="InputFirstName" placeholder="Enter First Name" onkeypress="return (event.charCode > 64 && 
+                        event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)" value="{{old('first_name')}}">
    @error('first_name')
    <span class="invalid-feedback" role="alert">
     <strong>{{ $message }}</strong>
@@ -109,7 +110,8 @@
 <div class="col-md-4">
   <div class="form-group">
    <label for="InputMiddleName" class="control-label">Middle Name</label>
-   <input type="text" name="middle_name" class="form-control @error('middle_name') is-invalid @enderror" id="InputMiddleName" placeholder="Enter Middle Name" value="{{old('middle_name')}}">
+   <input type="text" name="middle_name" class="form-control @error('middle_name') is-invalid @enderror" id="InputMiddleName" placeholder="Enter Middle Name" value="{{old('middle_name')}}" onkeypress="return (event.charCode > 64 && 
+                        event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)">
    @error('middle_name')
    <span class="invalid-feedback" role="alert">
     <strong>{{ $message }}</strong>
@@ -120,7 +122,8 @@
 <div class="col-md-4">
   <div class="form-group required">
    <label for="InputLastName" class="control-label">Last Name</label>
-   <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" id="InputLastName" placeholder="Enter Last Name" value="{{old('last_name')}}">
+   <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" id="InputLastName" placeholder="Enter Last Name" value="{{old('last_name')}}" onkeypress="return (event.charCode > 64 && 
+                        event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)">
    @error('last_name')
    <span class="invalid-feedback" role="alert">
     <strong>{{ $message }}</strong>
@@ -152,7 +155,7 @@
     <div class="input-group-prepend">
      <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
    </div>
-   <input type="tel" name="mobile_number" id="InputMobileNumber" class="form-control @error('mobile_number') is-invalid @enderror" placeholder="Mobile Number" value="{{old('mobile_number')}}">
+   <input type="tel" name="mobile_number" id="InputMobileNumber" class="form-control @error('mobile_number') is-invalid @enderror" placeholder="Mobile Number" value="{{old('mobile_number')}}"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="10">
    @error('mobile_number')
    <span class="invalid-feedback" role="alert">
     <strong>{{ $message }}</strong>
@@ -165,7 +168,7 @@
 <div class="col-md-4">
   <div class="form-group required">
    <label for="InputPanNumber" class="control-label">Permanent Account Number (PAN) <small>10 Charactors Alpha-numeric</small> </label>
-   <input type="text" name="pan_number" id="InputPanNumber" class="form-control @error('pan_number') is-invalid @enderror" style="text-transform:uppercase" placeholder="PAN" value="{{old('pan_number')}}">
+   <input type="text" name="pan_number" id="InputPanNumber" class="form-control @error('pan_number') is-invalid @enderror" style="text-transform:uppercase" maxlength="10" placeholder="PAN" value="{{old('pan_number')}}">
    @error('pan_number')
    <span class="invalid-feedback" role="alert">
     <strong>{{ $message }}</strong>
@@ -193,7 +196,8 @@
 <div class="col-md-4">
   <div class="form-group required">
    <label for="InputRequestedDuration" class="control-label">Company Name</label>
-   <input type="text" name="company_name" class="form-control @error('company_name') is-invalid @enderror" id="InputRequestedDuration" placeholder="Enter Company Name" value="{{old('company_name')}}">
+   <input type="text" name="company_name" class="form-control @error('company_name') is-invalid @enderror" id="InputRequestedDuration" placeholder="Enter Company Name" value="{{old('company_name')}}" onkeypress="return (event.charCode > 64 && 
+                        event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)">
    @error('company_name')
    <span class="invalid-feedback" role="alert">
     <strong>{{ $message }}</strong>
@@ -226,7 +230,7 @@
 <div class="col-md-4">
   <div class="form-group required">
    <label for="InputLastName" class="control-label">Annual Income/ Monthly Salary <small>in number only</small> </label>
-   <input type="number" name="income_salary" class="form-control @error('income_salary') is-invalid @enderror" id="InputLastName" placeholder="Enter Annual Income/ Monthly Salary" value="{{old('income_salary')}}">
+   <input type="number" name="income_salary" class="form-control @error('income_salary') is-invalid @enderror" id="InputLastName" placeholder="Enter Annual Income/ Monthly Salary"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{old('income_salary')}}">
    @error('income_salary')
    <span class="invalid-feedback" role="alert">
     <strong>{{ $message }}</strong>
@@ -241,7 +245,7 @@
     <div class="input-group-prepend">
      <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
    </div>
-   <input type="number" name="residence_pincode" id="InputResidencePinCode" class="form-control @error('residence_pincode') is-invalid @enderror" placeholder="Pin Code" value="{{old('residence_pincode')}}">
+   <input type="text" name="residence_pincode" id="InputResidencePinCode" class="form-control @error('residence_pincode') is-invalid @enderror" placeholder="Pin Code" maxlength="6" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{old('residence_pincode')}}">
    @error('residence_pincode')
    <span class="invalid-feedback" role="alert">
     <strong>{{ $message }}</strong>
@@ -258,7 +262,7 @@
     <div class="input-group-prepend">
      <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
    </div>
-   <input type="number" name="permanent_pincode" id="InputResidencePinCode" class="form-control @error('permanent_pincode') is-invalid @enderror" placeholder="Pin Code" value="{{old('permanent_pincode')}}">
+   <input type="text" name="permanent_pincode" id="InputResidencePinCode" class="form-control @error('permanent_pincode') is-invalid @enderror" placeholder="Pin Code" maxlength="6" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{old('permanent_pincode')}}">
    @error('permanent_pincode')
    <span class="invalid-feedback" role="alert">
     <strong>{{ $message }}</strong>

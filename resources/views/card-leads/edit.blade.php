@@ -88,7 +88,7 @@
         </div>
     </div>
 </div>
-@if($data->status!='Cancel')
+@if($data->status!='Disbursement')
 <div class="col-lg-12 mt-3">
     <div class="form-group">
         <div class="form-control-wrap" style="text-align: left;">

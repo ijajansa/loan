@@ -41,7 +41,7 @@
     <div class="col-sm-6">
       <div class="login-box">
         <div class="login-logo">
-          <a href="<?php echo e(url('/')); ?>"><b>MK GRAMIN </b>NIDHI</a>
+          <a href="<?php echo e(url('/')); ?>"><b style="color: #007bff;font-weight: bold;">MKGRAMEEN </b>NIDHI</a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -113,7 +113,7 @@ unset($__errorArgs, $__bag); ?>
             </form>
           </div>
           <div class="row">
-            <div class="col-sm-12"><div style="padding:10px"><strong>Disclaimer: </strong>please enter your registered Email ID with Loan Lenders</div></div>
+            <div class="col-sm-12"><div style="padding:10px"><strong>Disclaimer: </strong>please enter your registered Email ID with MKGRAMEENNIDHI</div></div>
           </div>
           <!-- /.login-card-body -->
         </div>

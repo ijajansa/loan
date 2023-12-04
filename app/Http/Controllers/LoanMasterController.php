@@ -29,7 +29,7 @@ class LoanMasterController extends Controller
 				}
 			})
 			->addColumn('action',function($data){
-				return '<a href="'.url('loan-types/edit').'/'.$data->id.'"><button class="btn btn-primary btn-sm"><i class="icon ni ni-edit"></i>&nbsp;View</button></a>&nbsp;<a href="'.url('loan-types/assign').'/'.$data->id.'"><button class="btn btn-warning btn-sm"><i class="icon ni ni-edit"></i>&nbsp;Assign Documents</button></a>';
+				return '<a href="'.url('loan-types/edit').'/'.$data->id.'"><button class="btn btn-primary btn-sm"><i class="icon ni ni-edit"></i>&nbsp;View</button></a>&nbsp;<a href="'.url('loan-types/assign').'/'.$data->id.'"><button class="btn btn-warning btn-sm"><i class="icon ni ni-edit"></i>&nbsp;Assign Documents</button></a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="destroy('.$data->id.')"><button class="btn btn-danger btn-sm"><i class="icon ni ni-trash"></i></button></a>';
 			})->
 			addColumn('profile',function($data){
     			if($data->image!=null)
@@ -174,5 +174,11 @@ class LoanMasterController extends Controller
 		}
 		return redirect()->back()->with('error','Something went wrong');
 
+	}
+	public function destroy($id)
+	{
+		$data= LoanMaster::find($id);
+		$data->delete();
+		return redirect()->back()->with('success','Loan type deleted successfully');
 	}
 }

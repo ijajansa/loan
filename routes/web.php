@@ -64,6 +64,7 @@ Route::group(['prefix' => 'loan-types', 'middleware'=> ['auth']], function(){
 	Route::get('add',[LoanMasterController::class, 'add']);
 	Route::get('edit/{id}',[LoanMasterController::class, 'edit']);
 	Route::get('status/{id}',[LoanMasterController::class, 'status']);
+	Route::get('delete/{id}',[LoanMasterController::class, 'destroy']);
 	Route::post('edit/{id}',[LoanMasterController::class, 'update']);
 	Route::post('add',[LoanMasterController::class, 'insert']);
 	Route::get('assign/{id}',[LoanMasterController::class, 'documents']);
@@ -76,6 +77,7 @@ Route::group(['prefix' => 'loan-documents', 'middleware'=> ['auth']], function()
 	Route::get('add',[LoanDocumentController::class, 'add']);
 	Route::get('edit/{id}',[LoanDocumentController::class, 'edit']);
 	Route::get('status/{id}',[LoanDocumentController::class, 'status']);
+	Route::get('delete/{id}',[LoanDocumentController::class, 'destroy']);
 	Route::post('edit/{id}',[LoanDocumentController::class, 'update']);
 	Route::post('add',[LoanDocumentController::class, 'insert']);
 });

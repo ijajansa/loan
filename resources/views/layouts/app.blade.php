@@ -35,6 +35,7 @@
               letter-spacing: 18px;
               font-size: 40px;
               font-weight: bold;
+              color: #007bff;
   }
   .headingP{
     letter-spacing: 13px;

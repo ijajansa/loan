@@ -27,7 +27,7 @@ class LoanDocumentController extends Controller
 				}
 			})
 			->addColumn('action',function($data){
-				return '<a href="'.url('loan-documents/edit').'/'.$data->id.'"><button class="btn btn-primary btn-sm"><i class="icon ni ni-edit"></i>&nbsp;View</button></a>';
+				return '<a href="'.url('loan-documents/edit').'/'.$data->id.'"><button class="btn btn-primary btn-sm"><i class="icon ni ni-edit"></i>&nbsp;View</button></a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="destroy('.$data->id.')"><button class="btn btn-danger btn-sm"><i class="icon ni ni-trash"></i></button></a>';
 			})
 			->rawColumns(['status','action'])->make(true);
 		}
@@ -101,5 +101,11 @@ class LoanDocumentController extends Controller
 
 		}
 		return redirect()->back()->with('error','Something went wrong');
+	}
+	public function destroy($id)
+	{
+		$data= LoanDocument::find($id);
+		$data->delete();
+		return redirect()->back()->with('success','Document deleted successfully');
 	}
 }

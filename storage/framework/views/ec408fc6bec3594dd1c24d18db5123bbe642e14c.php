@@ -116,7 +116,7 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </div>
-<?php if($data->status!='Cancel'): ?>
+<?php if($data->status!='Disbursement'): ?>
 <div class="col-lg-12 mt-3">
     <div class="form-group">
         <div class="form-control-wrap" style="text-align: left;">

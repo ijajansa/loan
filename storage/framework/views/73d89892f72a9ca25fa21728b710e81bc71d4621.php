@@ -40,7 +40,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="InputFirstName" placeholder="Enter First Name" value="<?php echo e(old('first_name')); ?>">
+unset($__errorArgs, $__bag); ?>" id="InputFirstName" placeholder="Enter First Name" value="<?php echo e(old('first_name')); ?>" onkeypress="return (event.charCode > 64 && 
+                        event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)">
            <?php $__errorArgs = ['first_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -65,7 +66,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="InputFirstName1" placeholder="Enter Last Name" value="<?php echo e(old('last_name')); ?>">
+unset($__errorArgs, $__bag); ?>" id="InputFirstName1" placeholder="Enter Last Name" value="<?php echo e(old('last_name')); ?>" onkeypress="return (event.charCode > 64 && 
+                        event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)">
           <?php $__errorArgs = ['last_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -94,7 +96,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" placeholder="Mobile Number" value="<?php echo e(old('mobile_number')); ?>">
+unset($__errorArgs, $__bag); ?>" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="Mobile Number" value="<?php echo e(old('mobile_number')); ?>">
          <?php $__errorArgs = ['mobile_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -180,7 +182,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" autocomplete="off" value="<?php echo e(old('dob')); ?>">
+unset($__errorArgs, $__bag); ?>" autocomplete="off" value="<?php echo e(old('dob')); ?>" max="<?php echo e(date('Y-m-d')); ?>">
     <?php $__errorArgs = ['dob'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -237,14 +239,14 @@ unset($__errorArgs, $__bag); ?>
     <div class="input-group-prepend">
      <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
    </div>
-   <input type="number" name="current_pincode" id="InputcurrentPinCode" class="form-control  <?php $__errorArgs = ['current_pincode'];
+   <input type="text" maxlength="6" name="current_pincode" id="InputcurrentPinCode" class="form-control  <?php $__errorArgs = ['current_pincode'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" placeholder="Pin Code" value="<?php echo e(old('current_pincode')); ?>">
+unset($__errorArgs, $__bag); ?>" placeholder="Pin Code" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="<?php echo e(old('current_pincode')); ?>">
    <?php $__errorArgs = ['current_pincode'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -267,14 +269,14 @@ unset($__errorArgs, $__bag); ?>
     <div class="input-group-prepend">
      <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
    </div>
-   <input type="number" name="permanent_pincode" id="InputResidencePinCode" class="form-control <?php $__errorArgs = ['permanent_pincode'];
+   <input type="text" maxlength="6" name="permanent_pincode" id="InputResidencePinCode" class="form-control <?php $__errorArgs = ['permanent_pincode'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" placeholder="Pin Code" value="<?php echo e(old('permanent_pincode')); ?>">
+unset($__errorArgs, $__bag); ?>" placeholder="Pin Code" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="<?php echo e(old('permanent_pincode')); ?>">
    <?php $__errorArgs = ['permanent_pincode'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -357,7 +359,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" style="text-transform:uppercase" placeholder="PAN" value="<?php echo e(old('pan_number')); ?>">
+unset($__errorArgs, $__bag); ?>" style="text-transform:uppercase" placeholder="PAN" maxlength="10" value="<?php echo e(old('pan_number')); ?>">
    <?php $__errorArgs = ['pan_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -450,14 +452,14 @@ unset($__errorArgs, $__bag); ?>
     <div class="input-group-prepend">
      <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
    </div>
-   <input type="number" name="office_pincode" id="InputOfficePinCode" class="form-control <?php $__errorArgs = ['office_pincode'];
+   <input type="text" name="office_pincode" id="InputOfficePinCode" class="form-control <?php $__errorArgs = ['office_pincode'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" placeholder="Pin Code" value="<?php echo e(old('office_pincode')); ?>">
+unset($__errorArgs, $__bag); ?>" placeholder="Pin Code" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="6" value="<?php echo e(old('office_pincode')); ?>">
    <?php $__errorArgs = ['office_pincode'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -485,7 +487,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" placeholder="Company Name" value="<?php echo e(old('company_name')); ?>">
+unset($__errorArgs, $__bag); ?>" placeholder="Company Name" value="<?php echo e(old('company_name')); ?>" onkeypress="return (event.charCode > 64 && 
+                        event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)">
    <?php $__errorArgs = ['company_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -510,7 +513,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" placeholder="Designation" value="<?php echo e(old('designation')); ?>">
+unset($__errorArgs, $__bag); ?>" placeholder="Designation" value="<?php echo e(old('designation')); ?>" onkeypress="return (event.charCode > 64 && 
+                        event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)">
    <?php $__errorArgs = ['designation'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -535,7 +539,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" placeholder="Mother Name" value="<?php echo e(old('mother_name')); ?>">
+unset($__errorArgs, $__bag); ?>" placeholder="Mother Name" value="<?php echo e(old('mother_name')); ?>" onkeypress="return (event.charCode > 64 && 
+                        event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode ==32)">
    <?php $__errorArgs = ['mother_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

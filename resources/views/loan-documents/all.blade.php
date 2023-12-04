@@ -126,6 +126,20 @@
                 window.location.href="{{url('loan-documents/status')}}/"+id;
             });
     }
+
+    function destroy(id)
+    {
+        Swal.fire({
+                title: 'Are you sure?',
+                text: 'Are you sure want to delete ?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function (result) 
+            {
+                window.location.href="{{url('loan-documents/delete')}}/"+id;
+            });
+    }
 </script>
 <!-- content @e -->
 @endsection

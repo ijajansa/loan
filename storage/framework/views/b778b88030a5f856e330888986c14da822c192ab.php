@@ -134,6 +134,20 @@
                 window.location.href="<?php echo e(url('loan-types/status')); ?>/"+id;
             });
     }
+
+    function destroy(id)
+    {
+        Swal.fire({
+                title: 'Are you sure?',
+                text: 'Are you sure want to delete ?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function (result) 
+            {
+                window.location.href="<?php echo e(url('loan-types/delete')); ?>/"+id;
+            });
+    }
 </script>
 <!-- content @e -->
 <?php $__env->stopSection(); ?>
