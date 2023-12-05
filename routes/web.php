@@ -11,6 +11,7 @@ use App\Http\Controllers\LoanDocumentController;
 use App\Http\Controllers\BankCommissionController;
 use App\Http\Controllers\BankCommissionCrController;
 use App\Http\Controllers\WalletRequestController;
+use App\Http\Controllers\NotificationController;
 
 
 /*
@@ -98,6 +99,7 @@ Route::group(['prefix' => 'credit-card-leads', 'middleware'=> ['auth']], functio
 	Route::get('wallet-withdraw',[PanelController::class, 'loadWalletWithdrawPage']);
 	Route::post('wallet-withdraw',[PanelController::class, 'loadWalletWithdraw']);
 	Route::get('loan-panel',[PanelController::class, 'loadLoanPage']);
+	Route::get('notification-panel',[PanelController::class, 'notificationPage']);
 	Route::get('credit-card',[PanelController::class, 'creditCardPage']);
 	Route::get('view-credit-card-details/{id}',[PanelController::class, 'viewCreditCardPage']);
 	Route::get('list-credit-cards',[PanelController::class, 'listCards']);
@@ -135,4 +137,14 @@ Route::group(['prefix' => 'wallet-requests', 'middleware'=> ['auth']], function(
 	Route::post('add',[WalletRequestController::class, 'insert']);
 	Route::get('status/{id}',[WalletRequestController::class, 'status']);
 	Route::post('edit/{id}',[WalletRequestController::class, 'update']);
+});
+
+Route::group(['prefix' => 'notifications', 'middleware'=> ['auth']], function(){
+	Route::get('/',[NotificationController::class, 'all']);
+	Route::get('add',[NotificationController::class, 'add']);
+	Route::get('delete/{id}',[NotificationController::class, 'delete']);
+	Route::get('edit/{id}',[NotificationController::class, 'edit']);
+	Route::post('add',[NotificationController::class, 'insert']);
+	Route::get('status/{id}',[NotificationController::class, 'status']);
+	Route::post('edit/{id}',[NotificationController::class, 'update']);
 });

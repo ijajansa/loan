@@ -10,6 +10,7 @@ use App\Models\LoanUserDocument;
 use App\Models\User;
 use App\Models\CreditCard;
 use App\Models\WalletRequest;
+use App\Models\Notification;
 use Auth;
 
 
@@ -307,5 +308,11 @@ class PanelController extends Controller
             $user->save();
         }
         return redirect('wallet-history')->with('success','Withdraw request sent successfully');
+    }
+
+    public function notificationPage()
+    {
+        $notifications = Notification::where('is_active',1)->orderBy('id','DESC')->get();
+        return view('front.notifications',compact('notifications'));
     }
 }

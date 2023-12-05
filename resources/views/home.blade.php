@@ -92,7 +92,7 @@
                 </tr>
                 <tr>
                   <td class="text-center">
-                    <h2>&#8377; {{Auth::user()->wallet}}</h2>
+                    <h2>&#8377; {{number_format(Auth::user()->wallet)}}</h2>
                   </td>
                   <!-- <td class="text-center">
                     <h5>&#8377; 22.00</h5>
@@ -231,7 +231,7 @@
               <div class="row">
                 <div class="col-12">
                   <div class="row">
-                    <div class="col-sm-12 col-offset-1 panelcard" style="cursor:pointer" onclick=window.location.href="{{url('loan-panel')}}">
+                    <div class="col-sm-12 col-offset-1 panelcard" style="cursor:pointer" onclick=window.location.href="{{url('notification-panel')}}">
                       <div class="card custom-card">
                         <div class="card-body">
                           <div class="d-flex flex-wrap align-items-top">
@@ -240,7 +240,7 @@
                             </div>
                             <hr>
                             <div>
-                              <h5 class="mb-1">Banners</h5>
+                              <h5 class="mb-1">Notifications</h5>
                             </div>
                           </div>
                         </div>
