@@ -417,7 +417,8 @@
                                   </td>
                                   <td>
                                     <?php if(Auth::user()->id==$record->agent_id): ?>
-                                    Your Client
+                                    <?php echo e(Auth::user()->first_name." ".Auth::user()->last_name); ?>
+
                                     <?php else: ?>
                                     <?php echo e($record->agent_first." ".$record->agent_last); ?>
 

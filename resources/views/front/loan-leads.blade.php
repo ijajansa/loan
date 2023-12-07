@@ -31,7 +31,7 @@
           <tr>
             <th style="width: 5%">#File No.</th>
             <th style="width: 10%">Loan</th>
-            <th style="width: 5%">Loan Mode</th>
+            <!-- <th style="width: 5%">Loan Mode</th> -->
             <th style="width: 20%">Applicant Name</th>
             <th style="width: 20%">Subscriber</th>
             <th style="width: 5%">Phone No.</th>
@@ -42,22 +42,21 @@
           </tr>
         </thead>
         <tbody>
-          <form method="GET" action="/index.php?path=loan&method=list">
-            <input type="hidden" name="path" value="loan">
-            <input type="hidden" name="method" value="list">
+          <form method="GET" action="{{url('home')}}?data_show=list">
+            <input type="hidden" name="data_show" value="list">
             <tr>
               <td>
-                <input type="text" name="lead_id" value="" class="form-control">
+                <input type="text" name="lead_id" value="{{request()->query('lead_id')}}" class="form-control">
               </td>
               <td>
                 <select class="form-control" name="type">
                   <option value="">All</option>
                   @foreach($types as $type)
-                  <option value="{{$type->id}}">{{$type->name ?? ''}}</option>
+                  <option value="{{$type->id}}" @if(request()->query('lead_id')==$type->id) selected @endif>{{$type->name ?? ''}}</option>
                   @endforeach
                 </select>
               </td>
-              <td>
+             <!--  <td>
                 <select class="form-control" name="loan_mode">
                   <option value="">All</option>
                   <option value="New" >New</option>
@@ -66,28 +65,28 @@
                   <option value="Card To Card" >Card To Card</option>
 
                 </select>
-              </td>
+              </td> -->
               <td>
-                <input type="text" class="form-control" name="applicant_name" value="" placeholder="Applicant Name">
+                <input type="text" class="form-control" name="applicant_name" value="{{request()->query('applicant_name')}}" placeholder="Applicant Name">
               </td>
               <td>
                 &nbsp;
               </td>
               <td>
-                <input type="text" class="form-control" name="mobile_number" value="" placeholder="Mobile Number">
+                <input type="text" class="form-control" name="mobile_number" value="{{request()->query('mobile_number')}}" placeholder="Phone Number">
               </td>
               <td>
-                <input type="text" class="form-control" name="email" value="" placeholder="Email">
+                <input type="text" class="form-control" name="email" value="{{request()->query('email')}}" placeholder="Email">
               </td>
               <td>&nbsp;</td>
               <td>
                 <select class="form-control" name="status">
-                  <option>All</option>
-                  <option value="PDC">PD-C</option>
-                  <option value="Login">Login</option>
-                  <option value="Process">Process</option>
-                  <option value="Cancel">Cancelled</option>
-                  <option value="Disbursement">Disbursed</option>
+                  <option value="">All</option>
+                  <option value="PDC" @if(request()->query('status')=="PDC") selected @endif>PD-C</option>
+                  <option value="Login" @if(request()->query('status')=="Login") selected @endif>Login</option>
+                  <option value="Process" @if(request()->query('status')=="Process") selected @endif>Process</option>
+                  <option value="Cancel" @if(request()->query('status')=="Cancel") selected @endif>Cancelled</option>
+                  <option value="Disbursement" @if(request()->query('status')=="Disbursement") selected @endif>Disbursed</option>
                 </select>
               </td>
               <td class="project-actions text-left">
@@ -101,7 +100,7 @@
           <tr>
             <td>{{$ans->id}}</td>
             <td>{{$ans->loan_name}}<br>Rs {{$ans->requested_amount}}</td>
-            <td>{{$ans->loan_mode}}</td>
+            <!-- <td>{{$ans->loan_mode}}</td> -->
             <td>{{$ans->first_name}} {{$ans->middle_name}} {{$ans->last_name}}<br/>
               <small><strong>Applied On</strong> {{$ans->created_at->format('d-m-Y')}}</small><br/>
               <small></small><br/>
@@ -109,7 +108,7 @@
             </td>
             <td>
               @if(Auth::user()->id==$ans->agent_id)
-              Your Client
+              {{Auth::user()->first_name." ".Auth::user()->last_name}}
               @else
               {{$ans->agent_first." ".$ans->agent_last}}
               @endif

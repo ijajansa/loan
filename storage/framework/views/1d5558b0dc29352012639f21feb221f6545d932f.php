@@ -31,7 +31,7 @@
           <tr>
             <th style="width: 5%">#File No.</th>
             <th style="width: 10%">Loan</th>
-            <th style="width: 5%">Loan Mode</th>
+            <!-- <th style="width: 5%">Loan Mode</th> -->
             <th style="width: 20%">Applicant Name</th>
             <th style="width: 20%">Subscriber</th>
             <th style="width: 5%">Phone No.</th>
@@ -42,22 +42,21 @@
           </tr>
         </thead>
         <tbody>
-          <form method="GET" action="/index.php?path=loan&method=list">
-            <input type="hidden" name="path" value="loan">
-            <input type="hidden" name="method" value="list">
+          <form method="GET" action="<?php echo e(url('home')); ?>?data_show=list">
+            <input type="hidden" name="data_show" value="list">
             <tr>
               <td>
-                <input type="text" name="lead_id" value="" class="form-control">
+                <input type="text" name="lead_id" value="<?php echo e(request()->query('lead_id')); ?>" class="form-control">
               </td>
               <td>
                 <select class="form-control" name="type">
                   <option value="">All</option>
                   <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                  <option value="<?php echo e($type->id); ?>"><?php echo e($type->name ?? ''); ?></option>
+                  <option value="<?php echo e($type->id); ?>" <?php if(request()->query('lead_id')==$type->id): ?> selected <?php endif; ?>><?php echo e($type->name ?? ''); ?></option>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
               </td>
-              <td>
+             <!--  <td>
                 <select class="form-control" name="loan_mode">
                   <option value="">All</option>
                   <option value="New" >New</option>
@@ -66,28 +65,28 @@
                   <option value="Card To Card" >Card To Card</option>
 
                 </select>
-              </td>
+              </td> -->
               <td>
-                <input type="text" class="form-control" name="applicant_name" value="" placeholder="Applicant Name">
+                <input type="text" class="form-control" name="applicant_name" value="<?php echo e(request()->query('applicant_name')); ?>" placeholder="Applicant Name">
               </td>
               <td>
                 &nbsp;
               </td>
               <td>
-                <input type="text" class="form-control" name="mobile_number" value="" placeholder="Mobile Number">
+                <input type="text" class="form-control" name="mobile_number" value="<?php echo e(request()->query('mobile_number')); ?>" placeholder="Phone Number">
               </td>
               <td>
-                <input type="text" class="form-control" name="email" value="" placeholder="Email">
+                <input type="text" class="form-control" name="email" value="<?php echo e(request()->query('email')); ?>" placeholder="Email">
               </td>
               <td>&nbsp;</td>
               <td>
                 <select class="form-control" name="status">
-                  <option>All</option>
-                  <option value="PDC">PD-C</option>
-                  <option value="Login">Login</option>
-                  <option value="Process">Process</option>
-                  <option value="Cancel">Cancelled</option>
-                  <option value="Disbursement">Disbursed</option>
+                  <option value="">All</option>
+                  <option value="PDC" <?php if(request()->query('status')=="PDC"): ?> selected <?php endif; ?>>PD-C</option>
+                  <option value="Login" <?php if(request()->query('status')=="Login"): ?> selected <?php endif; ?>>Login</option>
+                  <option value="Process" <?php if(request()->query('status')=="Process"): ?> selected <?php endif; ?>>Process</option>
+                  <option value="Cancel" <?php if(request()->query('status')=="Cancel"): ?> selected <?php endif; ?>>Cancelled</option>
+                  <option value="Disbursement" <?php if(request()->query('status')=="Disbursement"): ?> selected <?php endif; ?>>Disbursed</option>
                 </select>
               </td>
               <td class="project-actions text-left">
@@ -101,7 +100,7 @@
           <tr>
             <td><?php echo e($ans->id); ?></td>
             <td><?php echo e($ans->loan_name); ?><br>Rs <?php echo e($ans->requested_amount); ?></td>
-            <td><?php echo e($ans->loan_mode); ?></td>
+            <!-- <td><?php echo e($ans->loan_mode); ?></td> -->
             <td><?php echo e($ans->first_name); ?> <?php echo e($ans->middle_name); ?> <?php echo e($ans->last_name); ?><br/>
               <small><strong>Applied On</strong> <?php echo e($ans->created_at->format('d-m-Y')); ?></small><br/>
               <small></small><br/>
@@ -109,7 +108,8 @@
             </td>
             <td>
               <?php if(Auth::user()->id==$ans->agent_id): ?>
-              Your Client
+              <?php echo e(Auth::user()->first_name." ".Auth::user()->last_name); ?>
+
               <?php else: ?>
               <?php echo e($ans->agent_first." ".$ans->agent_last); ?>
 

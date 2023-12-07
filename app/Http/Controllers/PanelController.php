@@ -31,13 +31,13 @@ class PanelController extends Controller
                 $applications = $applications->where('loan_applications.agent_id',Auth::user()->id);
             }
             $applications = $applications->limit(10)->select('loan_applications.*','loan_masters.name as loan_name','users.first_name as agent_first','users.last_name as agent_last')->get();
-	    	return view('front.loan-page',compact('data','applications'));
-    	}
-    	else
-    	{
+            return view('front.loan-page',compact('data','applications'));
+        }
+        else
+        {
             $data = LoanMaster::find($request->type);
-    		return view('front.add-loan',compact('data'));
-    	}
+            return view('front.add-loan',compact('data'));
+        }
     }
     public function updateDSA(Request $request)
     {
@@ -99,7 +99,7 @@ class PanelController extends Controller
 
             return redirect()->back()->with('success','User details updated successfully');
         }
-            return redirect()->back()->with('error','Something went wrong');
+        return redirect()->back()->with('error','Something went wrong');
         
 
     }
@@ -131,14 +131,14 @@ class PanelController extends Controller
     	$data = $request->all();
     	unset($data['_token']);
         if(\Auth::user()->role_id==2)
-        $data['dsa_id'] = \Auth::user()->id ?? 0;
+            $data['dsa_id'] = \Auth::user()->id ?? 0;
         else
-        $data['dsa_id'] = \Auth::user()->agent_id ?? 0;
+            $data['dsa_id'] = \Auth::user()->agent_id ?? 0;
 
         $data['agent_id'] = \Auth::user()->id ?? 0;
-    	$record = LoanApplication::create($data);
+        $record = LoanApplication::create($data);
 
-    	return redirect('view-loan/'.$record->id)->with('success','Loan Application Uploaded Successfully');
+        return redirect('view-loan/'.$record->id)->with('success','Loan Application Uploaded Successfully');
     }
 
     public function viewLoanLead($id)
@@ -204,9 +204,9 @@ class PanelController extends Controller
         $data = $request->all();
         $data['agent_id'] = \Auth::user()->id ?? 0;
         if(\Auth::user()->role_id==2)
-        $data['dsa_id'] = \Auth::user()->id ?? 0;
+            $data['dsa_id'] = \Auth::user()->id ?? 0;
         else
-        $data['dsa_id'] = \Auth::user()->agent_id ?? 0;
+            $data['dsa_id'] = \Auth::user()->agent_id ?? 0;
 
         $data['status'] = "PDC";
         $data['created_at'] = date('Y-m-d H:i:s');
@@ -231,13 +231,37 @@ class PanelController extends Controller
     {
         $data = CreditCard::orderBy('credit_cards.id','DESC');
         if(Auth::user()->role_id==2)
-            {
-                $data = $data->where('credit_cards.dsa_id',Auth::user()->id);
-            }
-            else
-            {
-                $data = $data->where('credit_cards.agent_id',Auth::user()->id);
-            }
+        {
+            $data = $data->where('credit_cards.dsa_id',Auth::user()->id);
+        }
+        else
+        {
+            $data = $data->where('credit_cards.agent_id',Auth::user()->id);
+        }
+        if($request->lead_id!=null)
+        {
+            $data =$data->where('credit_cards.id',$request->lead_id);
+        }
+
+        if($request->applicant_name!=null)
+                {
+                    $data =$data->where(function($query) use ($request){
+                        $query->where('credit_cards.first_name','like','%'.$request->applicant_name.'%')->orWhere('credit_cards.last_name','like','%'.$request->applicant_name.'%');
+                    });
+                }
+                if($request->email!=null)
+                {
+                    $data =$data->where('credit_cards.email','like','%'.$request->email.'%');
+                }
+                if($request->mobile_number!=null)
+                {
+                    $data =$data->where('credit_cards.mobile_number','like','%'.$request->mobile_number.'%');
+                }
+                if($request->status!=null)
+                {
+                    $data =$data->where('credit_cards.status','like','%'.$request->status.'%');
+                }
+
         $data = $data->select('credit_cards.*')->paginate(10);
 
         return view('front.list-credit-card',compact('data'));

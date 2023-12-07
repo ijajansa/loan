@@ -44,32 +44,29 @@
           </tr>
         </thead>
         <tbody>
-          <form method="GET" action="#">
-            <input type="hidden" name="path" value="cclead">
-            <input type="hidden" name="method" value="list">
+          <form method="GET" action="{{url('list-credit-cards')}}">
             <tr>
               <td>
-                <input type="text" name="lead_id" value="" class="form-control">
+                <input type="text" name="lead_id" value="{{request()->query('lead_id')}}" class="form-control">
               </td>
               <td>
-                <input type="text" class="form-control" name="applicant_name" value="" placeholder="Applicant Name">
+                <input type="text" class="form-control" name="applicant_name" value="{{request()->query('applicant_name')}}" placeholder="Applicant Name">
               </td>
               <td>
-                <input type="text" class="form-control" name="mobile_number" value="" placeholder="Mobile Number">
+                <input type="text" class="form-control" name="mobile_number" value="{{request()->query('mobile_number')}}" placeholder="Phone Number">
               </td>
               <td>
-                <input type="text" class="form-control" name="email" value="" placeholder="Email">
+                <input type="text" class="form-control" name="email" value="{{request()->query('email')}}" placeholder="Email">
               </td>
               <td>&nbsp;</td>
               <td>
                 <select class="form-control" name="status">
-                  <option>All</option>
-                  <option value="1" >Un-Assigned</option>
-                  <option value="2" >Login</option>
-                  <option value="3" >Cancel</option>
-                  <option value="4" >Success</option>
-                  <option value="5" >Card Dispatched</option>
-                  <option value="6" >Rejected</option>
+                  <option value="">All</option>
+                  <option value="PDC" @if(request()->query('status')=="PDC") selected @endif>PD-C</option>
+                  <option value="Login" @if(request()->query('status')=="Login") selected @endif>Login</option>
+                  <option value="Process" @if(request()->query('status')=="Process") selected @endif>Process</option>
+                  <option value="Cancel" @if(request()->query('status')=="Cancel") selected @endif>Cancelled</option>
+                  <option value="Disbursement" @if(request()->query('status')=="Disbursement") selected @endif>Disbursed</option>
                 </select>
               </td>
               <td class="project-actions text-left">
@@ -81,14 +78,14 @@
           </form>
           @foreach($data as $record)
           <tr>
-            <td>{{5000+$record->id}}</td>
+            <td>{{$record->id}}</td>
             <td>{{$record->first_name}} {{$record->last_name}}<br/>
               <small><strong>Applied On</strong> {{$record->created_at->format('d/m/Y')}}</small><br/>
               <small></small>
             </td>
             <td>{{$record->mobile_number}}</td>
             <td>{{$record->email}}</td>
-            <td>Review Not Submited</td>
+            <td>{{$record->review ?? ''}}</td>
             <td>
               @if($record->status=='PDC')
               <span class="badge bg-indigo">PD-C</span>

@@ -52,6 +52,33 @@ class HomeController extends Controller
                 {
                     $data = $data->where('loan_applications.agent_id',Auth::user()->id);
                 }
+
+                if($request->lead_id!=null)
+                {
+                    $data =$data->where('loan_applications.id',$request->lead_id);
+                }
+                if($request->type!=null)
+                {
+                    $data =$data->where('loan_applications.type',$request->type);
+                }
+                if($request->applicant_name!=null)
+                {
+                    $data =$data->where(function($query) use ($request){
+                        $query->where('loan_applications.first_name','like','%'.$request->applicant_name.'%')->orWhere('loan_applications.middle_name','like','%'.$request->applicant_name.'%')->orWhere('loan_applications.last_name','like','%'.$request->applicant_name.'%');
+                    });
+                }
+                if($request->email!=null)
+                {
+                    $data =$data->where('loan_applications.email','like','%'.$request->email.'%');
+                }
+                if($request->mobile_number!=null)
+                {
+                    $data =$data->where('loan_applications.mobile_number','like','%'.$request->mobile_number.'%');
+                }
+                if($request->status!=null)
+                {
+                    $data =$data->where('loan_applications.status','like','%'.$request->status.'%');
+                }
                 $data = $data->leftJoin('loan_masters','loan_masters.id','loan_applications.type')->select('loan_applications.*','users.first_name as agent_first','users.last_name as agent_last','loan_masters.name as loan_name')
                 ->paginate(10);
                 $types = LoanMaster::where('is_active',1)->orderBy('name','ASC')->get();

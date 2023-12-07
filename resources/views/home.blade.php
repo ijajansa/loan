@@ -416,7 +416,7 @@
                                   </td>
                                   <td>
                                     @if(Auth::user()->id==$record->agent_id)
-                                    Your Client
+                                    {{Auth::user()->first_name." ".Auth::user()->last_name}}
                                     @else
                                     {{$record->agent_first." ".$record->agent_last}}
                                     @endif

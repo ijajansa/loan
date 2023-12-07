@@ -44,32 +44,29 @@
           </tr>
         </thead>
         <tbody>
-          <form method="GET" action="#">
-            <input type="hidden" name="path" value="cclead">
-            <input type="hidden" name="method" value="list">
+          <form method="GET" action="<?php echo e(url('list-credit-cards')); ?>">
             <tr>
               <td>
-                <input type="text" name="lead_id" value="" class="form-control">
+                <input type="text" name="lead_id" value="<?php echo e(request()->query('lead_id')); ?>" class="form-control">
               </td>
               <td>
-                <input type="text" class="form-control" name="applicant_name" value="" placeholder="Applicant Name">
+                <input type="text" class="form-control" name="applicant_name" value="<?php echo e(request()->query('applicant_name')); ?>" placeholder="Applicant Name">
               </td>
               <td>
-                <input type="text" class="form-control" name="mobile_number" value="" placeholder="Mobile Number">
+                <input type="text" class="form-control" name="mobile_number" value="<?php echo e(request()->query('mobile_number')); ?>" placeholder="Phone Number">
               </td>
               <td>
-                <input type="text" class="form-control" name="email" value="" placeholder="Email">
+                <input type="text" class="form-control" name="email" value="<?php echo e(request()->query('email')); ?>" placeholder="Email">
               </td>
               <td>&nbsp;</td>
               <td>
                 <select class="form-control" name="status">
-                  <option>All</option>
-                  <option value="1" >Un-Assigned</option>
-                  <option value="2" >Login</option>
-                  <option value="3" >Cancel</option>
-                  <option value="4" >Success</option>
-                  <option value="5" >Card Dispatched</option>
-                  <option value="6" >Rejected</option>
+                  <option value="">All</option>
+                  <option value="PDC" <?php if(request()->query('status')=="PDC"): ?> selected <?php endif; ?>>PD-C</option>
+                  <option value="Login" <?php if(request()->query('status')=="Login"): ?> selected <?php endif; ?>>Login</option>
+                  <option value="Process" <?php if(request()->query('status')=="Process"): ?> selected <?php endif; ?>>Process</option>
+                  <option value="Cancel" <?php if(request()->query('status')=="Cancel"): ?> selected <?php endif; ?>>Cancelled</option>
+                  <option value="Disbursement" <?php if(request()->query('status')=="Disbursement"): ?> selected <?php endif; ?>>Disbursed</option>
                 </select>
               </td>
               <td class="project-actions text-left">
@@ -81,14 +78,14 @@
           </form>
           <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $record): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
           <tr>
-            <td><?php echo e(5000+$record->id); ?></td>
+            <td><?php echo e($record->id); ?></td>
             <td><?php echo e($record->first_name); ?> <?php echo e($record->last_name); ?><br/>
               <small><strong>Applied On</strong> <?php echo e($record->created_at->format('d/m/Y')); ?></small><br/>
               <small></small>
             </td>
             <td><?php echo e($record->mobile_number); ?></td>
             <td><?php echo e($record->email); ?></td>
-            <td>Review Not Submited</td>
+            <td><?php echo e($record->review ?? ''); ?></td>
             <td>
               <?php if($record->status=='PDC'): ?>
               <span class="badge bg-indigo">PD-C</span>
