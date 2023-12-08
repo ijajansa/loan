@@ -30,15 +30,15 @@ class AgentController extends Controller
     		->addColumn('status',function($data){
     			if($data->is_active ==1)
     			{
-    				return '<button class="btn btn-success btn-sm">Active</button>';
+    				return '<button class="btn btn-success btn-sm" onclick="changeStatus('.$data->id.')">Active</button>';
     			}
     			else
     			{
-    				return '<button class="btn btn-danger btn-sm">Inactive</button>';
+    				return '<button class="btn btn-danger btn-sm" onclick="changeStatus('.$data->id.')">Inactive</button>';
     			}
     		})
     		->addColumn('action',function($data){
-    			return '<a href="'.url('dsa/edit').'/'.$data->id.'"><button class="btn btn-primary btn-sm"><i class="icon ni ni-edit"></i>&nbsp;Edit</button></a>';
+    			return '<a href="'.url('dsa/edit').'/'.$data->id.'"><button class="btn btn-primary btn-sm"><i class="icon ni ni-edit"></i>&nbsp;Edit</button></a>&nbsp;&nbsp;<button class="btn btn-danger btn-sm" onclick="deleteRecord('.$data->id.')"><i class="icon ni ni-trash"></i></button>';
     		})
     		->rawColumns(['profile','full_name','status','action'])->make(true);
     	}
@@ -54,23 +54,23 @@ class AgentController extends Controller
     public function insert(Request $request)
     {
     	$request->validate([
-    		'first_name' => 'required',
-    		'middle_name' => 'nullable',
-    		'last_name' => 'required',
+    		'first_name' => 'required|regex:/^[\pL\s\-]+$/u',
+    		'middle_name' => 'nullable|regex:/^[\pL\s\-]+$/u',
+    		'last_name' => 'required|regex:/^[\pL\s\-]+$/u',
     		'email' => 'required|email|unique:users',
     		'mobile_number' => 'required|unique:users,mobile_number|digits:10',
-    		'whatsapp_number' => 'required',
+    		'whatsapp_number' => 'required|digits:10',
     		'pan_number' => 'required|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/',
     		'aadhar_number' => 'required|digits:12',
     		'password' => 'required|min:8',
     		'gst_type' => 'required',
     		'gst_number' => 'nullable|regex:/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/',
-    		'profile' => 'nullable|mimes:jpg,png,jpeg,svg',
+    		'profile' => 'nullable|mimes:jpg,png,jpeg,svg|max:1024',
     		'address' => 'required',
-    		'pincode' => 'required',
-    		'city' => 'required',
-    		'state' => 'required',
-    		'country' => 'required'
+    		'pincode' => 'required|digits:6',
+    		'city' => 'required|regex:/^[\pL\s\-]+$/u',
+    		'state' => 'required|regex:/^[\pL\s\-]+$/u',
+    		'country' => 'required|regex:/^[\pL\s\-]+$/u'
 
     	]);
 
@@ -116,23 +116,23 @@ class AgentController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'first_name' => 'required',
-            'middle_name' => 'nullable',
-            'last_name' => 'required',
+            'first_name' => 'required|regex:/^[\pL\s\-]+$/u',
+            'middle_name' => 'nullable|regex:/^[\pL\s\-]+$/u',
+            'last_name' => 'required|regex:/^[\pL\s\-]+$/u',
             'email' => 'required|email|unique:users,email,'.$request->id.'',
             'mobile_number' => 'required|unique:users,mobile_number,'.$request->id.'|digits:10',
-            'whatsapp_number' => 'required',
+            'whatsapp_number' => 'required|digits:10',
             'pan_number' => 'required|regex:/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/',
             'aadhar_number' => 'required|digits:12',
             'password' => 'required|min:8',
             'gst_type' => 'required',
             'gst_number' => 'nullable|regex:/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/',
-            'profile' => 'nullable|mimes:jpg,png,jpeg,svg',
+            'profile' => 'nullable|mimes:jpg,png,jpeg,svg|max:1024',
             'address' => 'required',
-            'pincode' => 'required',
-            'city' => 'required',
-            'state' => 'required',
-            'country' => 'required'
+            'pincode' => 'required|digits:6',
+            'city' => 'required|regex:/^[\pL\s\-]+$/u',
+            'state' => 'required|regex:/^[\pL\s\-]+$/u',
+            'country' => 'required|regex:/^[\pL\s\-]+$/u'
         ]);
 
         $data = User::find($request->id);
@@ -160,5 +160,26 @@ class AgentController extends Controller
         $data->save();
 
         return redirect('dsa')->with('success','DSA details updated successfully');
+    }
+
+    public function status($id)
+    {
+        $data = User::find($id);
+        if($data && $data->is_active==1)
+            $data->is_active = 0;
+        else
+            $data->is_active = 1;
+        $data->save();            
+        return redirect()->back()->with('success','DSA status updated successfully');
+    }
+    public function delete($id)
+    {
+        $data = User::find($id);
+        if($data)
+        {
+            $data->delete();
+            return redirect()->back()->with('success','DSA deleted successfully');
+        }
+        return redirect()->back()->with('error','Something went wrong');
     }
 }

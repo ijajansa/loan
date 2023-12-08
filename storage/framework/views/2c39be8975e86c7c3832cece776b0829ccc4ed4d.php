@@ -120,7 +120,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('email',$data->email)); ?>" name="email" placeholder="Enter Email ID" id="full-name-4">
+unset($__errorArgs, $__bag); ?> textLower" value="<?php echo e(old('email',$data->email)); ?>" name="email" placeholder="Enter Email ID" id="full-name-4">
                                             <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -205,7 +205,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('pan_number',$data->pan_number)); ?>" name="pan_number" placeholder="Enter PAN Number" id="full-name-7" maxlength="10" onkeypress='return (event.charCode >= 48 && event.charCode <= 57) || (event.charCode > 64 && event.charCode < 91)' >
+unset($__errorArgs, $__bag); ?> textUpper" value="<?php echo e(old('pan_number',$data->pan_number)); ?>" name="pan_number" placeholder="Enter PAN Number" id="full-name-7" maxlength="10" >
                                             <?php $__errorArgs = ['pan_number'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -253,14 +253,15 @@ unset($__errorArgs, $__bag); ?>
                                     <div class="form-group">
                                         <label class="form-label" for="full-name-13">Password <span class="text-danger">*</span></label>
                                         <div class="form-control-wrap">
-                                            <input type="text" class="form-control <?php $__errorArgs = ['password'];
+                                            <a tabindex="-1" href="javascript:void(0)" class="form-icon form-icon-right passcode-switch lg" data-target="password"><em onclick="show1()" class="passcode-icon icon-show icon ni ni-eye"></em><em onclick="hide1()" class="passcode-icon icon-hide icon ni ni-eye-off"></em></a>
+                                            <input type="password" class="form-control <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('password',$data->visible_password)); ?>" name="password" placeholder="Enter Password" id="full-name-13">
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('password',$data->visible_password)); ?>" name="password" placeholder="Enter Password" id="password" >
                                             <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -536,6 +537,13 @@ unset($__errorArgs, $__bag); ?>
 </div>
 </div>
 <script>
+     $('.textUpper').keyup(function() { 
+        this.value = this.value.toLocaleUpperCase(); 
+    }); 
+    $('.textLower').keyup(function() { 
+        this.value = this.value.toLocaleLowerCase(); 
+    });
+
     function showImg(event){
         $('#showImage').show();
         $('#showIcon').hide();

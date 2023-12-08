@@ -98,13 +98,16 @@
                 }
             },
             {
-                "mData":"name"
+                "mData":"name",
+                "sortable": false
             },
             {
-                "mData":"status"
+                "mData":"status",
+                "sortable": false
             },
             {
-                "mData":"action"
+                "mData":"action",
+                "sortable": false
             }
             ]
 
@@ -123,6 +126,7 @@
                 confirmButtonText: 'Yes, change it!'
             }).then(function (result) 
             {
+                if(result.value)
                 window.location.href="<?php echo e(url('loan-documents/status')); ?>/"+id;
             });
     }

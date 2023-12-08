@@ -84,30 +84,38 @@
             "columns":[
             {
                 "mData":"id",
+                "sortable": false,
                 render: function (data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }
             },
             {
-                "mData":"profile"
+                "mData":"profile",
+                "sortable": false
             },
             {            
-                "mData":"full_name"
+                "mData":"full_name",
+                "sortable": false
             },
             {
-                "mData":"email"
+                "mData":"email",
+                "sortable": false
             },
             {
-                "mData":"mobile_number"
+                "mData":"mobile_number",
+                "sortable": false
             },
             {
-                "mData":"whatsapp_number"
+                "mData":"whatsapp_number",
+                "sortable": false
             },
             {
-                "mData":"status"
+                "mData":"status",
+                "sortable": false
             },
             {
-                "mData":"action"
+                "mData":"action",
+                "sortable": false
             }
             ]
 
@@ -119,128 +127,37 @@
     function deleteRecord(id) {
         if ($.trim(id)) {
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You want to delete this?",
+                title: 'Are you sure ?',
+                text: "You want to delete this ?",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Yes, delete it !'
             }).then(function (result) {
                 if (result.value) 
                 {
-                    window.location.href="{{ url('daily-charts/delete') }}/"+id;
+                    window.location.href="{{ url('dsa/delete') }}/"+id;
                 }
             });
         }
     }
 
-    /* Change Status*/
-    function changeStatus(id, is_active) {
-
-        if ($.trim(id)) {
-            var message = "You want to active.";
-
-            if (is_active == 0) {
-                message = "You want to inactive.";
-            }
-
-            Swal.fire({
-                title: 'Are you sure?',
-                text: message,
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, change it!'
-            }).then(function (result) {
-
-                if (result.value) {
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': "{{csrf_token()}}"
-                        },
-
-                        url: "{{ url('daily-charts/change-status') }}",
-                        type: "POST",
-                        data: { 'id': id, 'is_active': is_active },
-                        dataType: "JSON",
-                        success: function (response) {
-                            // For success
-                            if (response.status == 'success') {
-                                Swal.fire("Done", response.message, "success");
-                                $("#myTable").DataTable().ajax.reload();
-                                return true;
-                            }
-
-                            // If fails
-                            if (response.status == 'error') {
-                                Swal.fire("Error!", response.message, "error");
-                                return true;
-                            }
-                        },
-                        error: function (xhr, ajaxOptions, thrownError) {
-                            Swal.fire("Error!", "Something went wrong", "error");
-                        }
-                    });
-                }
-            });
-        }
-    }
-
-    /* soft Delete*/
-    function softDelete(id, is_active) {
-        var message = "You want to unarchive this?";
-
-        if (is_active == 2) {
-            message = "You want to archive this?";
-        }
+    function changeStatus(id) {
         if ($.trim(id)) {
             Swal.fire({
-                title: 'Are you sure?',
-                text: message,
+                title: 'Are you sure ?',
+                text: "You want to change this status ?",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes'
+                confirmButtonText: 'Yes, change it !'
             }).then(function (result) {
-                
-                if (result.value) {
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': "{{csrf_token()}}"
-                        },
-
-                        url: "{{ url('daily-charts/change-status') }}",
-                        type: "POST",
-                        data: { 'id': id, 'is_active': is_active },
-                        dataType: "JSON",
-                        success: function (response) {
-                            // For success
-                            if (response.status == 'success') {
-                                Swal.fire({
-                                    title: 'Done',
-                                    text: 'success',
-                                    icon: 'success',
-                                    showCancelButton: false,
-                                    showConfirmButton: false,
-                                    ConfirmButtonText: false
-                                });
-                                // Swal.fire("Done", response, "success");
-                                window.location.reload();
-                                return true;
-                            }
-
-                            // If fails
-                            if (response.status == 'error') {
-                                Swal.fire("Error!", response, "error");
-                                return true;
-                            }
-                        },
-                        error: function (xhr, ajaxOptions, thrownError) {
-                            Swal.fire("Error!", "Something went wrong", "error");
-                        }
-                    });
+                if (result.value) 
+                {
+                    window.location.href="{{ url('dsa/status') }}/"+id;
                 }
-                
             });
         }
     }
+
 </script>
 <!-- content @e -->
 @endsection

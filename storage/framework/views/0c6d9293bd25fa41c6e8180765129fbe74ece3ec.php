@@ -109,6 +109,7 @@
             "processing": true,
             "serverSide": true,
             "searching":false,
+            "sortable": false,
             "bLengthChange":false,
 
             ajax:"<?php echo e(url('loan-applications')); ?>?name="+search+"&type="+type+"&agent_id="+agent_id,

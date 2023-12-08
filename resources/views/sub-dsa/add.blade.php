@@ -92,7 +92,7 @@
                                     <div class="form-group">
                                         <label class="form-label" for="full-name-4">Email ID <span class="text-danger">*</span></label>
                                         <div class="form-control-wrap">
-                                            <input type="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}" name="email" placeholder="Enter Email ID" id="full-name-4">
+                                            <input type="email" class="form-control @error('email') is-invalid @enderror textLower" value="{{old('email')}}" name="email" placeholder="Enter Email ID" id="full-name-4">
                                             @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -135,7 +135,7 @@
                                     <div class="form-group">
                                         <label class="form-label" for="full-name-7">Permanent Account Number (PAN) <span class="text-danger">*</span></label>
                                         <div class="form-control-wrap">
-                                            <input type="text" class="form-control @error('pan_number') is-invalid @enderror" value="{{old('pan_number')}}" name="pan_number" placeholder="Enter PAN Number" id="full-name-7" maxlength="10" onkeypress='return (event.charCode >= 48 && event.charCode <= 57) || (event.charCode > 64 && event.charCode < 91)' >
+                                            <input type="text" class="form-control @error('pan_number') is-invalid @enderror textUpper" value="{{old('pan_number')}}" name="pan_number" placeholder="Enter PAN Number" id="full-name-7" maxlength="10">
                                             @error('pan_number')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -162,7 +162,8 @@
                                     <div class="form-group">
                                         <label class="form-label" for="full-name-13">Password <span class="text-danger">*</span></label>
                                         <div class="form-control-wrap">
-                                            <input type="text" class="form-control @error('password') is-invalid @enderror" value="{{old('password')}}" name="password" placeholder="Enter Password" id="full-name-13" >
+                                            <a tabindex="-1" href="javascript:void(0)" class="form-icon form-icon-right passcode-switch lg" data-target="password"><em onclick="show1()" class="passcode-icon icon-show icon ni ni-eye"></em><em onclick="hide1()" class="passcode-icon icon-hide icon ni ni-eye-off"></em></a>
+                                            <input type="password" class="form-control @error('password') is-invalid @enderror" value="{{old('password')}}" name="password" placeholder="Enter Password" id="password" >
                                             @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -320,6 +321,14 @@
 </div>
 </div>
 <script>
+     $('.textUpper').keyup(function() { 
+        this.value = this.value.toLocaleUpperCase(); 
+    }); 
+    $('.textLower').keyup(function() { 
+        this.value = this.value.toLocaleLowerCase(); 
+    });
+
+
     $("#showImage").hide();
     function showImg(event){
         $('#showImage').show();

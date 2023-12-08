@@ -103,72 +103,16 @@
   <?php endif; ?>
 </script>
 <script type="text/javascript">
-  const firebaseConfig = {
-    apiKey: "AIzaSyDEbA62jpHyLPvg-NwiGj2CT7gM7epjAb8",
-    authDomain: "p3-trading-consultancy.firebaseapp.com",
-    databaseURL: "https://p3-trading-consultancy-default-rtdb.firebaseio.com",
-    projectId: "p3-trading-consultancy",
-    storageBucket: "p3-trading-consultancy.appspot.com",
-    messagingSenderId: "667656276555",
-    appId: "1:667656276555:web:fc56d35cb2ed8721441bce",
-    measurementId: "G-Q534MN5SQ9"
-  };
-  firebase.initializeApp(firebaseConfig);
-  var database = firebase.database();
-  const messaging = firebase.messaging();
-
-  messaging.requestPermission()
-  .then(() => {
-    console.log('Notification permission granted.');
-    // Retrieve the registration token
-    messaging.getToken({
-    vapidKey: 'BBVQnWeDBJm15PUgDsbx-8NMJdCLwOBoIXgt7CzUZGWcsN-PNSKNnDMI_JuIKd07SRnGsNNtpzsarT720uc2Vn8',
-  })
-    .then((currentToken) => {
-      if (currentToken) 
-      {
-        $.ajax({
-          url:"<?php echo e(url('update-token')); ?>",
-          type:"GET",
-          data:{token:currentToken},
-          success:function(record)
-          {
-            console.log("Token :", record);
-          }
-        });
-        } else {
-          console.log('No registration token available.');
-        }
-      })
-    .catch((error) => {
-      console.error('Error getting registration token:', error);
-    });
-  })
-  .catch((error) => {
-    console.error('Unable to get permission to notify:', error);
-  });
-
-
-  messaging.onMessage(function (payload) {
-    console.log(payload);
-    const notificationOption={
-      body:payload.notification.body,
-      icon:payload.notification.icon
-    };
-    var notification=new Notification(payload.notification.title,notificationOption);
-    notification.onclick=function (ev) {
-      ev.preventDefault();
-      window.open(payload.notification.click_action,'_blank');
-      notification.close();
-    }
-  });
-
-</script>
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('<?php echo e(url("firebase-messaging-sw.js")); ?>')
-    .then()
-    .catch(err => console.error('Error', err));
+  function show1()
+  {
+    $(".icon-hide").show();
+    $(".icon-show").hide();
+    $("#password").attr('type','text');
+  }
+  function hide1(){
+    $(".icon-hide").hide();
+    $(".icon-show").show();
+    $("#password").attr('type','password');
   }
 </script>
 </body>

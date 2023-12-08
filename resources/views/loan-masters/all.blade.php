@@ -100,19 +100,24 @@
                 }
             },
             {
-                "mData":"profile"
+                "mData":"profile",
+                "sortable": false
             },
             {
-                "mData":"name"
+                "mData":"name",
+                "sortable": false
             },
             {            
-                "mData":"additional_text"
+                "mData":"additional_text",
+                "sortable": false
             },
             {
-                "mData":"status"
+                "mData":"status",
+                "sortable": false
             },
             {
-                "mData":"action"
+                "mData":"action",
+                "sortable": false
             }
             ]
 
@@ -131,7 +136,9 @@
                 confirmButtonText: 'Yes, change it!'
             }).then(function (result) 
             {
+                if(result.value)
                 window.location.href="{{url('loan-types/status')}}/"+id;
+            
             });
     }
 
