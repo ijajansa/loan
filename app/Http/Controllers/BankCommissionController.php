@@ -58,8 +58,8 @@ class BankCommissionController extends Controller
     {
     	$request->validate([
     		'loan_id' => 'required',
-    		'bank_name' => 'required',
-    		'commission' => 'required'
+    		'bank_name' => 'required|regex:/^[\pL\s\-]+$/u',
+    		'commission' => 'required|numeric'
     	],[
     	    'loan_id.required' => 'The loan type field is required.'
     	    ]);
@@ -72,7 +72,7 @@ class BankCommissionController extends Controller
 
     	$data->save();
 
-    	return redirect()->back()->with('success','Bank commission added successfully');
+    	return redirect('bank-commissions')->with('success','Bank commission added successfully');
     }
 
     public function edit($id)
@@ -90,8 +90,8 @@ class BankCommissionController extends Controller
     {
         $request->validate([
     		'loan_id' => 'required',
-    		'bank_name' => 'required',
-    		'commission' => 'required'
+    		'bank_name' => 'required|regex:/^[\pL\s\-]+$/u',
+    		'commission' => 'required|numeric'
     	],[
     	    'loan_id.required' => 'The loan type field is required.'
     	    ]);
@@ -103,7 +103,7 @@ class BankCommissionController extends Controller
     	$data->loan_master_id = $request->loan_id;
         $data->save();
 
-        return redirect()->back()->with('success','Bank commission updated successfully');
+        return redirect('bank-commissions')->with('success','Bank commission updated successfully');
     }
 
     public function status($id)

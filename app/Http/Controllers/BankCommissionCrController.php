@@ -46,8 +46,8 @@ class BankCommissionCrController extends Controller
     public function insert(Request $request)
     {
     	$request->validate([
-    		'bank_name' => 'required',
-    		'commission' => 'required'
+    		'bank_name' => 'required|regex:/^[\pL\s\-]+$/u',
+    		'commission' => 'required|numeric'
     	]);
     	    
 
@@ -57,7 +57,7 @@ class BankCommissionCrController extends Controller
 
     	$data->save();
 
-    	return redirect()->back()->with('success','Bank commission added successfully');
+    	return redirect('credit-card-commissions')->with('success','Bank commission added successfully');
     }
 
     public function edit($id)
@@ -73,8 +73,8 @@ class BankCommissionCrController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-    		'bank_name' => 'required',
-    		'commission' => 'required'
+    		'bank_name' => 'required|regex:/^[\pL\s\-]+$/u',
+    		'commission' => 'required|numeric'
     	]);
 
 
@@ -83,7 +83,7 @@ class BankCommissionCrController extends Controller
     	$data->bank_commission = $request->commission;
         $data->save();
 
-        return redirect()->back()->with('success','Bank commission updated successfully');
+        return redirect('credit-card-commissions')->with('success','Bank commission updated successfully');
     }
 
     public function status($id)
