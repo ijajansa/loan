@@ -119,7 +119,6 @@
         
     }
     
-    /* Delete Status*/
     function statusUpdate(id) {
         if ($.trim(id)) {
             Swal.fire({
@@ -135,6 +134,21 @@
                 }
             });
         }
+    }
+
+    function deleteRecord(id)
+    {
+        Swal.fire({
+                title: 'Are you sure?',
+                text: 'Are you sure want to delete ?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function (result) 
+            {   
+                if(result.value)
+                window.location.href="{{url('credit-card-commissions/delete')}}/"+id;
+            });
     }
 
 </script>

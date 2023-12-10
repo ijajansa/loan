@@ -38,7 +38,7 @@ class BankCommissionController extends Controller
     			}
     		})
     		->addColumn('action',function($data){
-    			return '<a href="'.url('bank-commissions/edit').'/'.$data->id.'"><button class="btn btn-primary btn-sm"><i class="icon ni ni-edit"></i>&nbsp;Edit</button></a>';
+    			return '<a href="'.url('bank-commissions/edit').'/'.$data->id.'"><button class="btn btn-primary btn-sm"><i class="icon ni ni-edit"></i>&nbsp;Edit</button></a>&nbsp;&nbsp;&nbsp;<button class="btn btn-danger btn-sm" onclick="deleteRecord('.$data->id.')"><i class="icon ni ni-trash"></i></button>';
     		})
     		->rawColumns(['status','action'])->make(true);
     	}
@@ -115,6 +115,15 @@ class BankCommissionController extends Controller
     		$data->is_active = 1;
     	$data->save();
         return redirect()->back()->with('success','Bank commission status updated successfully');
+
+    }
+
+    public function delete($id)
+    {
+        $data= BankCommission::find($id);
+        if($data)
+        $data->delete();
+        return redirect()->back()->with('success','Bank commission deleted successfully');
 
     }
 }
