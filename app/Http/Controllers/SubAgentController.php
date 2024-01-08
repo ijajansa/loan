@@ -17,6 +17,18 @@ class SubAgentController extends Controller
             {
                 $data = $data->where('agent_id',$request->agent_id);
             }
+            if($request->name!=null)
+            {
+                $data = $data->where(function($query) use($request){
+                    $query
+                    ->where('first_name','like','%'.$request->name.'%')
+                    ->orWhere('middle_name','like','%'.$request->name.'%')
+                    ->orWhere('last_name','like','%'.$request->name.'%')
+                    ->orWhere('mobile_number','like','%'.$request->name.'%')
+                    ->orWhere('whatsapp_number','like','%'.$request->name.'%')
+                    ->orWhere('email','like','%'.$request->name.'%');
+                });
+            }
     		return DataTables::of($data)->
     		addColumn('profile',function($data){
     			if($data->profile!=null)

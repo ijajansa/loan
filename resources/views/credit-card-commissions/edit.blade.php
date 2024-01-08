@@ -18,7 +18,7 @@
 
                     <div class="card card-bordered card-preview">
                         <div class="card-inner">
-                            <form method="POST" action="{{url('bank-commissions/edit')}}/{{$data->id}}" enctype="multipart/form-data">
+                            <form method="POST" action="{{url('credit-card-commissions/edit')}}/{{$data->id}}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row g-4">
 

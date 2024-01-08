@@ -141,6 +141,7 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then(function (result) 
             {
+                if(result.value)
                 window.location.href="{{url('loan-documents/delete')}}/"+id;
             });
     }

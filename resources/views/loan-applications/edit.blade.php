@@ -24,7 +24,11 @@
      <div class="card-inner-group">
       <div class="card-inner">
        <div class="user-card user-card-s2">
-        <div class="user-avatar lg bg-primary"><img src="{{url('storage/app/')}}/{{$data->agents->profile}}" alt="" style="width: 82px;height: 82px;"></div>
+        <div class="user-avatar lg bg-primary">
+            @if($data->agents && $data->agents->profile!=null)
+            <img src="{{url('storage/app/')}}/{{$data->agents->profile}}" alt="" style="width: 82px;height: 82px;">            
+            @endif
+        </div>
         <div class="user-info">
          <div class="badge bg-light rounded-pill ucap">Agent Details</div>
          <h5>{{ucfirst($data->agents->first_name)??''}} {{ucfirst($data->agents->last_name)??''}}</h5>

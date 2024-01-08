@@ -38,7 +38,7 @@
                         <div class="card-inner">
                             <div class="row">
                                 <div class="col-lg-3">
-                                    <input type="text" placeholder="Type into Search" class="form-control">
+                                    <input type="text" id="search" onkeyup="callFunction()" placeholder="Type into Search" class="form-control">
                                 </div>
                                 <div class="col-lg-3">
                                     <select data-search="on" class="form-control form-select" onchange="callFunction()" id="agent_id" name="agent_id">
@@ -89,14 +89,15 @@
     function chartdataTable(){
 
             agent_id = $("#agent_id").val();
+            search = $("#search").val();
 
             NioApp.DataTable('#myTable', {
             "processing": true,
             "serverSide": true,
             "searching":false,
-            "bLengthChange":false,
+            "bLengthChange":true,
 
-            ajax:"{{url('sub-dsa')}}?agent_id="+agent_id,
+            ajax:"{{url('sub-dsa')}}?agent_id="+agent_id+"&name="+search,
             "order":[
             [0,"desc"]
             ],
